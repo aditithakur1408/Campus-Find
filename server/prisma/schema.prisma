@@ -1,0 +1,170 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  STUDENT
+  SECURITY_STAFF
+  ADMIN
+}
+
+enum ItemType {
+  LOST
+  FOUND
+}
+
+enum ItemStatus {
+  OPEN
+  CLAIM_PENDING
+  RESOLVED
+  EXPIRED
+}
+
+enum CustodyType {
+  WITH_FINDER
+  AT_SECURITY_DESK
+}
+
+enum ClaimStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  COMPLETED
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  passwordHash  String         @map("password_hash")
+  fullName      String         @map("full_name")
+  studentId     String?        @map("student_id")
+  phone         String?
+  role          Role           @default(STUDENT)
+  isVerified    Boolean        @default(false) @map("is_verified")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  items         Item[]
+  claims        Claim[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+
+  @@map("users")
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  iconName    String?  @map("icon_name")
+  description String?
+  items       Item[]
+
+  @@map("categories")
+}
+
+model Location {
+  id              Int      @id @default(autoincrement())
+  buildingName    String   @map("building_name")
+  zoneFloor       String   @map("zone_floor")
+  hasSecurityDesk Boolean  @default(false) @map("has_security_desk")
+  items           Item[]
+
+  @@unique([buildingName, zoneFloor])
+  @@map("locations")
+}
+
+model Item {
+  id              String        @id @default(uuid())
+  userId          String        @map("user_id")
+  categoryId      Int           @map("category_id")
+  locationId      Int           @map("location_id")
+  itemType        ItemType      @map("item_type")
+  title           String
+  description     String        @db.Text
+  brandColor      String?       @map("brand_color")
+  incidentDate    DateTime      @map("incident_date")
+  status          ItemStatus    @default(OPEN)
+  custodyType     CustodyType   @default(WITH_FINDER) @map("custody_type")
+  custodyDetails  String?       @map("custody_details")
+  proofQuestion   String?       @map("proof_question") @db.Text
+  handoverOtpHash String?       @map("handover_otp_hash")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category        Category      @relation(fields: [categoryId], references: [id])
+  location        Location      @relation(fields: [locationId], references: [id])
+  images          ItemImage[]
+  claims          Claim[]
+  auditLogs       AuditLog[]
+
+  @@index([status, itemType])
+  @@index([categoryId])
+  @@index([locationId])
+  @@index([createdAt])
+  @@map("items")
+}
+
+model ItemImage {
+  id        String   @id @default(uuid())
+  itemId    String   @map("item_id")
+  imageUrl  String   @map("image_url")
+  isPrimary Boolean  @default(false) @map("is_primary")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  item      Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@map("item_images")
+}
+
+model Claim {
+  id                   String      @id @default(uuid())
+  itemId               String      @map("item_id")
+  claimantId           String      @map("claimant_id")
+  proofAnswer          String      @map("proof_answer") @db.Text
+  additionalDetails    String?     @map("additional_details") @db.Text
+  proofAttachmentUrl   String?     @map("proof_attachment_url")
+  claimStatus          ClaimStatus @default(PENDING) @map("claim_status")
+  resolvedAt           DateTime?   @map("resolved_at")
+  createdAt            DateTime    @default(now()) @map("created_at")
+
+  item                 Item        @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  claimant             User        @relation(fields: [claimantId], references: [id], onDelete: Cascade)
+
+  @@index([itemId, claimStatus])
+  @@map("claims")
+}
+
+model Notification {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  title      String
+  message    String   @db.Text
+  actionLink String?  @map("action_link")
+  isRead     Boolean  @default(false) @map("is_read")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  itemId      String?  @map("item_id")
+  performedBy String   @map("performed_by")
+  action      String
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  item        Item?    @relation(fields: [itemId], references: [id], onDelete: SetNull)
+  user        User     @relation(fields: [performedBy], references: [id], onDelete: Cascade)
+
+  @@map("audit_logs")
+}
