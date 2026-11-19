@@ -5,76 +5,68 @@ export default function StatsBar({ stats }) {
   if (!stats) return null;
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 my-8">
-      {/* Note 1: Lost Items (Terracotta Crimson Archive) */}
-      <div className="sticky-note bg-[#fef2f2] hover:bg-[#fee2e2] p-5 rounded-2xl border-2 border-[#18181b] transition-all duration-200 cursor-pointer shadow-[3px_3px_0_#18181b] hover:shadow-[4px_5px_0_#18181b] hover:-translate-y-0.5 select-none group">
-        <div className="flex items-center justify-between">
-          <span className="font-type text-xs text-[#991b1b] uppercase tracking-wider font-bold">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 my-8">
+      {/* Note 1: Lost Items (Vibrant Coral Poppy) */}
+      <div className="sticky-note bg-[#ff7979] hover:bg-[#ff5252] p-5 rounded-[180px_10px_160px_12px/12px_170px_10px_180px] transform -rotate-1 hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer shadow-[4px_5px_0_#191712] hover:shadow-[6px_8px_0_#191712] select-none group border-[2.5px] border-[#191712]">
+        <div className="flex items-center justify-between text-[#191712]">
+          <span className="font-type text-xs uppercase tracking-wider font-bold">
             LOST NOTICES
           </span>
-          <div className="w-6 h-6 rounded-md bg-[#fee2e2] border border-[#f87171] flex items-center justify-center">
-            <Pin className="w-3.5 h-3.5 text-[#dc2626]" />
-          </div>
+          <Pin className="w-4 h-4 text-[#191712] group-hover:rotate-12 transition-transform" />
         </div>
         <div className="mt-3 flex items-baseline gap-2">
-          <strong className="font-display font-extrabold text-4xl sm:text-5xl text-[#18181b] leading-none">
+          <strong className="font-hand font-bold text-5xl sm:text-6xl text-[#191712] leading-none">
             {stats.totalLost ?? 0}
           </strong>
-          <span className="font-sans text-sm text-[#71717a]">items missing</span>
+          <span className="font-neat text-lg text-[#191712]/90 font-bold">items missing</span>
         </div>
       </div>
 
-      {/* Note 2: Found Items (Warm Amber Archive) */}
-      <div className="sticky-note bg-[#fffbeb] hover:bg-[#fef3c7] p-5 rounded-2xl border-2 border-[#18181b] transition-all duration-200 cursor-pointer shadow-[3px_3px_0_#18181b] hover:shadow-[4px_5px_0_#18181b] hover:-translate-y-0.5 select-none group">
-        <div className="flex items-center justify-between">
-          <span className="font-type text-xs text-[#92400e] uppercase tracking-wider font-bold">
+      {/* Note 2: Found Items (Vibrant Golden Sun) */}
+      <div className="sticky-note bg-[#ffd32a] hover:bg-[#ffa801] p-5 rounded-[180px_10px_160px_12px/12px_170px_10px_180px] transform rotate-1 hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer shadow-[4px_5px_0_#191712] hover:shadow-[6px_8px_0_#191712] select-none group border-[2.5px] border-[#191712]">
+        <div className="flex items-center justify-between text-[#191712]">
+          <span className="font-type text-xs uppercase tracking-wider font-bold">
             FOUND NOTICES
           </span>
-          <div className="w-6 h-6 rounded-md bg-[#fef3c7] border border-[#fbbf24] flex items-center justify-center">
-            <Pin className="w-3.5 h-3.5 text-[#d97706]" />
-          </div>
+          <Pin className="w-4 h-4 text-[#191712] group-hover:rotate-12 transition-transform" />
         </div>
         <div className="mt-3 flex items-baseline gap-2">
-          <strong className="font-display font-extrabold text-4xl sm:text-5xl text-[#18181b] leading-none">
+          <strong className="font-hand font-bold text-5xl sm:text-6xl text-[#191712] leading-none">
             {stats.totalFound ?? 0}
           </strong>
-          <span className="font-sans text-sm text-[#71717a]">spotted safe</span>
+          <span className="font-neat text-lg text-[#191712]/90 font-bold">spotted safe</span>
         </div>
       </div>
 
-      {/* Note 3: Returned / Handed Over (Botanical Sage Archive) */}
-      <div className="sticky-note bg-[#f0fdf4] hover:bg-[#dcfce7] p-5 rounded-2xl border-2 border-[#18181b] transition-all duration-200 cursor-pointer shadow-[3px_3px_0_#18181b] hover:shadow-[4px_5px_0_#18181b] hover:-translate-y-0.5 select-none group">
-        <div className="flex items-center justify-between">
-          <span className="font-type text-xs text-[#166534] uppercase tracking-wider font-bold">
+      {/* Note 3: Returned / Handed Over (Vibrant Emerald Mint) */}
+      <div className="sticky-note bg-[#2ed573] hover:bg-[#0be881] p-5 rounded-[180px_10px_160px_12px/12px_170px_10px_180px] transform -rotate-1.5 hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer shadow-[4px_5px_0_#191712] hover:shadow-[6px_8px_0_#191712] select-none group border-[2.5px] border-[#191712]">
+        <div className="flex items-center justify-between text-[#191712]">
+          <span className="font-type text-xs uppercase tracking-wider font-bold">
             HANDED OVER
           </span>
-          <div className="w-6 h-6 rounded-md bg-[#dcfce7] border border-[#4ade80] flex items-center justify-center">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#16a34a]" />
-          </div>
+          <ShieldCheck className="w-4 h-4 text-[#191712] group-hover:scale-110 transition-transform" />
         </div>
         <div className="mt-3 flex items-baseline gap-2">
-          <strong className="font-display font-extrabold text-4xl sm:text-5xl text-[#18181b] leading-none">
+          <strong className="font-hand font-bold text-5xl sm:text-6xl text-[#191712] leading-none">
             {stats.resolvedItems ?? 0}
           </strong>
-          <span className="font-sans text-sm text-[#71717a]">reunited ({stats.recoveryRate}%)</span>
+          <span className="font-neat text-lg text-[#191712]/90 font-bold">reunited ({stats.recoveryRate}%)</span>
         </div>
       </div>
 
-      {/* Note 4: Active Claims (Oxford Slate Archive) */}
-      <div className="sticky-note bg-[#eef2ff] hover:bg-[#e0e7ff] p-5 rounded-2xl border-2 border-[#18181b] transition-all duration-200 cursor-pointer shadow-[3px_3px_0_#18181b] hover:shadow-[4px_5px_0_#18181b] hover:-translate-y-0.5 select-none group">
-        <div className="flex items-center justify-between">
-          <span className="font-type text-xs text-[#3730a3] uppercase tracking-wider font-bold">
+      {/* Note 4: Active Claims (Vibrant Azure Sky) */}
+      <div className="sticky-note bg-[#70a1ff] hover:bg-[#1e90ff] p-5 rounded-[180px_10px_160px_12px/12px_170px_10px_180px] transform rotate-1.5 hover:rotate-0 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer shadow-[4px_5px_0_#191712] hover:shadow-[6px_8px_0_#191712] select-none group border-[2.5px] border-[#191712]">
+        <div className="flex items-center justify-between text-[#191712]">
+          <span className="font-type text-xs uppercase tracking-wider font-bold">
             PROOF CLAIMS
           </span>
-          <div className="w-6 h-6 rounded-md bg-[#e0e7ff] border border-[#818cf8] flex items-center justify-center">
-            <Clock className="w-3.5 h-3.5 text-[#4f46e5]" />
-          </div>
+          <Clock className="w-4 h-4 text-[#191712] group-hover:rotate-45 transition-transform" />
         </div>
         <div className="mt-3 flex items-baseline gap-2">
-          <strong className="font-display font-extrabold text-4xl sm:text-5xl text-[#18181b] leading-none">
+          <strong className="font-hand font-bold text-5xl sm:text-6xl text-[#191712] leading-none">
             {stats.pendingClaims ?? 0}
           </strong>
-          <span className="font-sans text-sm text-[#71717a]">under review</span>
+          <span className="font-neat text-lg text-[#191712]/90 font-bold">under review</span>
         </div>
       </div>
     </div>
