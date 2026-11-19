@@ -121,11 +121,11 @@ export default function App() {
 
   return (
     <Router>
-      <div className="min-h-screen flex flex-col selection:bg-[#191712] selection:text-[#fbf6e6]">
+      <div className="min-h-screen flex flex-col selection:bg-[#18181b] selection:text-[#faf8f5]">
         {/* Toast Notification */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 bg-[#191712] text-[#fbf6e6] px-5 py-3 rounded-2xl border-2 border-[#191712] shadow-[4px_5px_0_#ffe45e] flex items-center gap-3 animate-in slide-in-from-bottom-5 font-hand text-xl">
-            <CheckCircle className="w-5 h-5 text-[#b8ecd0]" />
+          <div className="fixed bottom-6 right-6 z-50 bg-[#18181b] text-white px-4 py-2.5 rounded-xl border-2 border-[#18181b] shadow-[3px_3px_0_#18181b] flex items-center gap-2.5 animate-in slide-in-from-bottom-5 font-sans font-semibold text-sm">
+            <CheckCircle className="w-4 h-4 text-emerald-400" />
             <span>{toastMessage}</span>
           </div>
         )}

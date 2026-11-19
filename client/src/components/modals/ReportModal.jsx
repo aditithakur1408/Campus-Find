@@ -71,37 +71,37 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
-      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-xl w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#18181b]/50 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
+      <div className="relative bg-white rounded-2xl max-w-xl w-full border-2 border-[#18181b] shadow-[6px_6px_0_#18181b] overflow-hidden my-8">
         {/* Masking Tape */}
         <div className="tape-sticker" />
 
         {/* Header */}
-        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between">
+        <div className="px-6 pt-6 pb-3 border-b border-dashed border-[#18181b]/20 flex items-center justify-between">
           <div>
-            <h2 className="font-hand font-bold text-3xl text-[#191712]">Pin a New Campus Notice</h2>
-            <p className="font-type text-[11px] text-[#d9584d] uppercase tracking-wider">
+            <h2 className="font-display font-bold text-2xl text-[#18181b]">Post a Campus Notice</h2>
+            <p className="font-type text-[11px] text-[#b91c1c] uppercase tracking-wider font-bold">
               [ENTER ACCURATE NOTICE DETAILS]
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
+            className="p-1 rounded-lg border-2 border-[#18181b] bg-white hover:bg-[#f1ede4] transition-colors"
           >
-            <X className="w-5 h-5 text-[#191712]" />
+            <X className="w-4 h-4 text-[#18181b]" />
           </button>
         </div>
 
         {/* Item Type Switcher */}
         <div className="p-6 pb-2">
-          <div className="grid grid-cols-2 gap-3 p-1.5 bg-[#f2ead4] rounded-2xl border-2 border-[#191712]">
+          <div className="grid grid-cols-2 gap-2 p-1.5 bg-[#f1ede4] rounded-xl border-2 border-[#18181b]">
             <button
               type="button"
               onClick={() => setItemType('LOST')}
-              className={`py-2 rounded-xl font-hand font-bold text-2xl border-2 border-[#191712] transition-all ${
+              className={`py-2 rounded-lg font-sans font-bold text-sm border-2 transition-all ${
                 itemType === 'LOST'
-                  ? 'bg-[#ffc9dc] text-[#d9584d] shadow-[3px_3px_0_#191712]'
-                  : 'bg-transparent text-[#5d5744] border-transparent hover:text-[#191712]'
+                  ? 'bg-[#fee2e2] text-[#991b1b] border-[#18181b] shadow-[2px_2px_0_#18181b]'
+                  : 'bg-transparent text-[#71717a] border-transparent hover:text-[#18181b]'
               }`}
             >
               I Lost Something
@@ -109,10 +109,10 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
             <button
               type="button"
               onClick={() => setItemType('FOUND')}
-              className={`py-2 rounded-xl font-hand font-bold text-2xl border-2 border-[#191712] transition-all ${
+              className={`py-2 rounded-lg font-sans font-bold text-sm border-2 transition-all ${
                 itemType === 'FOUND'
-                  ? 'bg-[#b8ecd0] text-[#191712] shadow-[3px_3px_0_#191712]'
-                  : 'bg-transparent text-[#5d5744] border-transparent hover:text-[#191712]'
+                  ? 'bg-[#dcfce7] text-[#166534] border-[#18181b] shadow-[2px_2px_0_#18181b]'
+                  : 'bg-transparent text-[#71717a] border-transparent hover:text-[#18181b]'
               }`}
             >
               I Found Something
@@ -121,8 +121,8 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
         </div>
 
         {error && (
-          <div className="mx-6 p-3 rounded-xl bg-[#ffc9dc] border-2 border-[#191712] text-sm text-[#191712] flex items-center gap-2 font-neat">
-            <AlertTriangle className="w-5 h-5 text-[#d9584d] shrink-0" />
+          <div className="mx-6 p-3 rounded-xl bg-[#fee2e2] border-2 border-[#18181b] text-sm text-[#991b1b] flex items-center gap-2 font-sans font-medium">
+            <AlertTriangle className="w-4 h-4 text-[#b91c1c] shrink-0" />
             <span>{error}</span>
           </div>
         )}
@@ -130,26 +130,26 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
         <form onSubmit={handleSubmit} className="p-6 space-y-4 pt-2">
           {/* Title */}
           <div>
-            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Notice Title *</label>
+            <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Notice Title *</label>
             <input
               type="text"
               required
-              placeholder={itemType === 'LOST' ? 'e.g. Blue Dell Laptop Charger' : 'e.g. Set of 3 Keys with Ferrari Keychain'}
+              placeholder={itemType === 'LOST' ? 'e.g. Blue Dell Laptop Charger' : 'e.g. Set of 3 Keys with Keychain'}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3.5 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+              className="w-full px-3.5 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
             />
           </div>
 
           {/* Category & Location */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Category *</label>
+              <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Category *</label>
               <select
                 required
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full px-3 py-2 text-base rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+                className="w-full px-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
               >
                 <option value="">Select Category</option>
                 {categories.map((c) => (
@@ -159,12 +159,12 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
             </div>
 
             <div>
-              <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Campus Spot *</label>
+              <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Campus Spot *</label>
               <select
                 required
                 value={locationId}
                 onChange={(e) => setLocationId(e.target.value)}
-                className="w-full px-3 py-2 text-base rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+                className="w-full px-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
               >
                 <option value="">Select Location</option>
                 {locations.map((loc) => (
@@ -179,7 +179,7 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
           {/* Date & Color */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">
+              <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">
                 Date {itemType === 'LOST' ? 'Lost' : 'Found'} *
               </label>
               <input
@@ -187,53 +187,53 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
                 required
                 value={incidentDate}
                 onChange={(e) => setIncidentDate(e.target.value)}
-                className="w-full px-3 py-2 text-base rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+                className="w-full px-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
               />
             </div>
 
             <div>
-              <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Brand / Color</label>
+              <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Brand / Color</label>
               <input
                 type="text"
                 placeholder="e.g. Navy Blue / HP"
                 value={brandColor}
                 onChange={(e) => setBrandColor(e.target.value)}
-                className="w-full px-3 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+                className="w-full px-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
               />
             </div>
           </div>
 
           {/* Description */}
           <div>
-            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Description *</label>
+            <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Description *</label>
             <textarea
               required
               rows={3}
               placeholder={itemType === 'LOST' ? 'Describe where you might have left it...' : 'Describe the general item without giving away secret marks...'}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-3.5 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+              className="w-full px-3.5 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
             />
           </div>
 
           {/* Found Item Special Features: Anti-Fraud Verification Question */}
           {itemType === 'FOUND' && (
-            <div className="p-4 rounded-2xl bg-[#ffe45e]/50 border-2 border-[#191712] space-y-3 shadow-[3px_3px_0_#191712]">
-              <div className="flex items-center gap-2 text-[#191712] font-hand font-bold text-xl">
-                <Shield className="w-5 h-5 text-[#d9584d]" />
+            <div className="p-4 rounded-xl bg-[#fef3c7] border-2 border-[#18181b] space-y-3 shadow-[3px_3px_0_#18181b]">
+              <div className="flex items-center gap-2 text-[#92400e] font-sans font-bold text-sm">
+                <Shield className="w-4 h-4 text-[#b45309]" />
                 <span>Anti-Fraud & Custody Protection</span>
               </div>
 
               <div>
-                <label className="block font-type text-xs text-[#5d5744] uppercase mb-1">Current Physical Custody</label>
+                <label className="block font-type text-xs text-[#52525b] uppercase mb-1">Current Physical Custody</label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     onClick={() => setCustodyType('WITH_FINDER')}
-                    className={`py-1.5 px-3 rounded-xl border-2 border-[#191712] font-hand font-bold text-lg ${
+                    className={`py-1.5 px-3 rounded-lg border-2 border-[#18181b] font-sans font-semibold text-xs ${
                       custodyType === 'WITH_FINDER'
-                        ? 'bg-[#ffe45e] shadow-[2px_2px_0_#191712]'
-                        : 'bg-[#fbf6e6] text-[#5d5744]'
+                        ? 'bg-[#18181b] text-white shadow-[2px_2px_0_#18181b]'
+                        : 'bg-white text-[#18181b]'
                     }`}
                   >
                     I have it with me
@@ -241,10 +241,10 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
                   <button
                     type="button"
                     onClick={() => setCustodyType('AT_SECURITY_DESK')}
-                    className={`py-1.5 px-3 rounded-xl border-2 border-[#191712] font-hand font-bold text-lg ${
+                    className={`py-1.5 px-3 rounded-lg border-2 border-[#18181b] font-sans font-semibold text-xs ${
                       custodyType === 'AT_SECURITY_DESK'
-                        ? 'bg-[#ffe45e] shadow-[2px_2px_0_#191712]'
-                        : 'bg-[#fbf6e6] text-[#5d5744]'
+                        ? 'bg-[#18181b] text-white shadow-[2px_2px_0_#18181b]'
+                        : 'bg-white text-[#18181b]'
                     }`}
                   >
                     Deposited at Security Desk
@@ -253,7 +253,7 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
               </div>
 
               <div>
-                <label className="block font-hand font-bold text-xl text-[#191712] mb-1">
+                <label className="block font-sans font-semibold text-xs text-[#92400e] mb-1">
                   Secret Proof Question (Only true owner knows):
                 </label>
                 <input
@@ -261,16 +261,16 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
                   placeholder="e.g. What sticker is on the back? What lockscreen photo is set?"
                   value={proofQuestion}
                   onChange={(e) => setProofQuestion(e.target.value)}
-                  className="w-full px-3 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712]"
+                  className="w-full px-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b]"
                 />
               </div>
             </div>
           )}
 
-          {/* Photo Upload Box (Raasta styled upload dropzone) */}
+          {/* Photo Upload Box */}
           <div>
-            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Pin a Photo (Optional)</label>
-            <div className="border-2 border-dashed border-[#191712] rounded-2xl p-4 text-center cursor-pointer bg-[#c2e5f7] hover:bg-[#ffe45e] transition-colors shadow-[2px_3px_0_#191712]">
+            <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Pin a Photo (Optional)</label>
+            <div className="border-2 border-dashed border-[#18181b] rounded-xl p-4 text-center cursor-pointer bg-[#f8f6f0] hover:bg-[#f1ede4] transition-colors shadow-[2px_2px_0_#18181b]">
               <input
                 type="file"
                 multiple
@@ -280,14 +280,14 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
                 id="photo-upload"
               />
               <label htmlFor="photo-upload" className="cursor-pointer flex flex-col items-center">
-                <div className="w-10 h-10 rounded-full border-2 border-[#191712] bg-[#ffe45e] flex items-center justify-center mb-1">
-                  <Upload className="w-5 h-5 text-[#191712]" />
+                <div className="w-9 h-9 rounded-lg border-2 border-[#18181b] bg-white flex items-center justify-center mb-1">
+                  <Upload className="w-4 h-4 text-[#18181b]" />
                 </div>
-                <span className="font-hand font-bold text-2xl text-[#191712]">Upload Photo Attachment</span>
-                <span className="font-type text-[10px] text-[#5d5744] uppercase">JPEG, PNG, WebP up to 5MB</span>
+                <span className="font-sans font-bold text-sm text-[#18181b]">Upload Photo Attachment</span>
+                <span className="font-type text-[10px] text-[#71717a] uppercase">JPEG, PNG, WebP up to 5MB</span>
               </label>
               {files.length > 0 && (
-                <div className="mt-2 font-hand font-bold text-xl text-[#2f6f46]">
+                <div className="mt-2 font-sans font-bold text-xs text-[#166534]">
                   ✓ {files.length} photo(s) selected
                 </div>
               )}
@@ -299,9 +299,9 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
             <button
               type="submit"
               disabled={loading}
-              className="sketch-button w-full !text-2xl !py-3"
+              className="sketch-button w-full text-base !py-3"
             >
-              {loading ? 'Pinning Notice...' : `Pin ${itemType === 'LOST' ? 'Lost' : 'Found'} Notice to Board`}
+              {loading ? 'Posting Notice...' : `Post ${itemType === 'LOST' ? 'Lost' : 'Found'} Notice to Board`}
             </button>
           </div>
         </form>

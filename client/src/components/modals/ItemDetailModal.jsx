@@ -85,30 +85,30 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
   const hasUserClaimed = user && details?.claims?.some((c) => c.claimantId === user.id);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
-      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-2xl w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden my-8 max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#18181b]/50 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
+      <div className="relative bg-white rounded-2xl max-w-2xl w-full border-2 border-[#18181b] shadow-[6px_6px_0_#18181b] overflow-hidden my-8 max-h-[90vh] flex flex-col">
         {/* Masking Tape */}
         <div className="tape-sticker" />
 
         {/* Header */}
-        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between shrink-0">
+        <div className="px-6 pt-6 pb-3 border-b border-dashed border-[#18181b]/20 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2">
             <span
               className={`stamp-badge ${
-                isFound ? 'bg-[#b8ecd0] text-[#191712]' : 'bg-[#ffc9dc] text-[#d9584d] border-[#d9584d]'
+                isFound ? 'bg-[#dcfce7] text-[#166534] border-[#4ade80]' : 'bg-[#fee2e2] text-[#991b1b] border-[#f87171]'
               }`}
             >
               {item.itemType} NOTICE
             </span>
-            <span className="font-hand font-bold text-xl text-[#5d5744]">
+            <span className="font-sans font-semibold text-sm text-[#52525b]">
               · {item.category?.name}
             </span>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
+            className="p-1 rounded-lg border-2 border-[#18181b] bg-white hover:bg-[#f1ede4] transition-colors"
           >
-            <X className="w-5 h-5 text-[#191712]" />
+            <X className="w-4 h-4 text-[#18181b]" />
           </button>
         </div>
 
@@ -117,27 +117,27 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
           {/* Main Title & Stamp */}
           <div>
             <div className="flex items-start justify-between gap-4">
-              <h2 className="font-hand font-bold text-4xl sm:text-5xl text-[#191712] leading-tight">
+              <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#18181b] leading-tight">
                 {item.title}
               </h2>
               {item.status === 'RESOLVED' && (
-                <span className="shrink-0 stamp-badge bg-[#191712] text-[#fbf6e6] text-xs py-1">
+                <span className="shrink-0 stamp-badge bg-[#18181b] text-white text-xs py-1">
                   HANDED OVER
                 </span>
               )}
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 mt-3 font-type text-xs text-[#5d5744]">
-              <div className="flex items-center gap-1.5 bg-[#f2ead4] px-3 py-1 rounded-lg border border-[#191712]">
-                <MapPin className="w-3.5 h-3.5 text-[#d9584d]" />
+            <div className="flex flex-wrap items-center gap-2.5 mt-3 font-type text-xs text-[#52525b]">
+              <div className="flex items-center gap-1.5 bg-[#f8f6f0] px-2.5 py-1 rounded-lg border border-[#18181b]/30">
+                <MapPin className="w-3.5 h-3.5 text-[#b91c1c]" />
                 <span>{item.location?.buildingName} — {item.location?.zoneFloor}</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-[#f2ead4] px-3 py-1 rounded-lg border border-[#191712]">
-                <Calendar className="w-3.5 h-3.5 text-[#191712]" />
+              <div className="flex items-center gap-1.5 bg-[#f8f6f0] px-2.5 py-1 rounded-lg border border-[#18181b]/30">
+                <Calendar className="w-3.5 h-3.5 text-[#18181b]" />
                 <span>{new Date(item.incidentDate).toLocaleDateString()}</span>
               </div>
               {item.brandColor && (
-                <div className="flex items-center gap-1.5 bg-[#f2ead4] px-3 py-1 rounded-lg border border-[#191712]">
+                <div className="flex items-center gap-1.5 bg-[#f8f6f0] px-2.5 py-1 rounded-lg border border-[#18181b]/30">
                   <span>COLOR: {item.brandColor}</span>
                 </div>
               )}
@@ -148,7 +148,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
           {item.images && item.images.length > 0 && (
             <div className="grid grid-cols-2 gap-3">
               {item.images.map((img) => (
-                <div key={img.id} className="aspect-video rounded-xl overflow-hidden border-2 border-[#191712] shadow-[3px_3px_0_#191712] bg-[#f2ead4]">
+                <div key={img.id} className="aspect-video rounded-xl overflow-hidden border-2 border-[#18181b] shadow-[3px_3px_0_#18181b] bg-[#f8f6f0]">
                   <img src={img.imageUrl} alt="Item attachment" className="w-full h-full object-cover" />
                 </div>
               ))}
@@ -156,27 +156,27 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
           )}
 
           {/* Description */}
-          <div className="bg-[#f2ead4] rounded-2xl p-4 border-2 border-[#191712] shadow-[3px_3px_0_rgba(25,23,18,0.1)]">
-            <h4 className="font-type text-xs text-[#d9584d] uppercase tracking-wider mb-1">
+          <div className="bg-[#f8f6f0] rounded-xl p-4 border border-[#18181b]/20 shadow-[2px_2px_0_rgba(24,24,27,0.06)]">
+            <h4 className="font-type text-xs text-[#b91c1c] uppercase tracking-wider mb-1 font-bold">
               [NOTICE DETAILS]
             </h4>
-            <p className="font-neat text-xl text-[#191712] leading-relaxed whitespace-pre-wrap">
+            <p className="font-sans text-sm text-[#18181b] leading-relaxed whitespace-pre-wrap">
               {item.description}
             </p>
           </div>
 
           {/* Custody Info */}
           {isFound && (
-            <div className="p-4 rounded-2xl bg-[#c2e5f7] border-2 border-[#191712] flex items-center justify-between shadow-[3px_3px_0_#191712]">
+            <div className="p-4 rounded-xl bg-[#e0e7ff] border-2 border-[#18181b] flex items-center justify-between shadow-[3px_3px_0_#18181b]">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full border-2 border-[#191712] bg-[#ffe45e] flex items-center justify-center shrink-0">
-                  <Shield className="w-5 h-5 text-[#191712]" />
+                <div className="w-9 h-9 rounded-lg border-2 border-[#18181b] bg-white flex items-center justify-center shrink-0">
+                  <Shield className="w-4 h-4 text-[#3730a3]" />
                 </div>
                 <div>
-                  <h4 className="font-hand font-bold text-2xl text-[#191712] leading-none">
+                  <h4 className="font-display font-bold text-base text-[#1e1b4b] leading-none">
                     Custody & Handover Station
                   </h4>
-                  <p className="font-neat text-base text-[#5d5744] mt-0.5">
+                  <p className="font-sans text-xs text-[#3730a3] mt-1">
                     {item.custodyType === 'AT_SECURITY_DESK'
                       ? 'Deposited at Central Campus Security Desk for safe custody.'
                       : 'Currently held with the finder on campus.'}
@@ -188,13 +188,13 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
           {/* Anti-Fraud Proof Question Notice */}
           {isFound && item.proofQuestion && (
-            <div className="p-4 rounded-2xl bg-[#ffe45e] border-2 border-[#191712] shadow-[3px_3px_0_#191712] transform -rotate-0.5">
-              <div className="flex items-center gap-2 text-[#191712] font-hand font-bold text-xl mb-1">
-                <Shield className="w-5 h-5 text-[#d9584d]" />
+            <div className="p-4 rounded-xl bg-[#fef3c7] border-2 border-[#18181b] shadow-[3px_3px_0_#18181b]">
+              <div className="flex items-center gap-2 text-[#92400e] font-sans font-bold text-sm mb-1">
+                <Shield className="w-4 h-4 text-[#b45309]" />
                 <span>Finder's Secret Verification Question:</span>
               </div>
-              <p className="font-hand font-bold text-2xl text-[#191712] italic">"{item.proofQuestion}"</p>
-              <p className="font-type text-[11px] text-[#5d5744] mt-1">
+              <p className="font-sans font-bold text-base text-[#78350f] italic">"{item.proofQuestion}"</p>
+              <p className="font-type text-[11px] text-[#92400e] mt-1">
                 To claim this item, you must submit a claim answering this question accurately.
               </p>
             </div>
@@ -202,29 +202,29 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
           {/* Owner / Staff Verification Management Section */}
           {(isOwner || isSecurity) && (
-            <div className="border-t-2 border-dashed border-[#191712]/30 pt-5 space-y-4">
-              <h3 className="font-hand font-bold text-3xl text-[#191712] flex items-center gap-2">
-                <Key className="w-6 h-6 text-[#d9584d]" />
+            <div className="border-t border-dashed border-[#18181b]/20 pt-5 space-y-4">
+              <h3 className="font-display font-bold text-xl text-[#18181b] flex items-center gap-2">
+                <Key className="w-5 h-5 text-[#b91c1c]" />
                 <span>Claims & Handover Verification</span>
               </h3>
 
               {otpMessage && (
-                <div className="p-3 bg-[#b8ecd0] border-2 border-[#191712] font-neat text-lg text-[#191712] rounded-xl shadow-[2px_2px_0_#191712]">
+                <div className="p-3 bg-[#dcfce7] border-2 border-[#18181b] font-sans text-sm text-[#166534] rounded-xl shadow-[2px_2px_0_#18181b]">
                   {otpMessage}
                 </div>
               )}
 
               {otpError && (
-                <div className="p-3 bg-[#ffc9dc] border-2 border-[#191712] font-neat text-lg text-[#d9584d] rounded-xl shadow-[2px_2px_0_#191712]">
+                <div className="p-3 bg-[#fee2e2] border-2 border-[#18181b] font-sans text-sm text-[#991b1b] rounded-xl shadow-[2px_2px_0_#18181b]">
                   {otpError}
                 </div>
               )}
 
               {/* Handover OTP Verification Form */}
               {item.status !== 'RESOLVED' && (
-                <form onSubmit={handleVerifyOtp} className="p-4 rounded-2xl bg-[#f2ead4] border-2 border-[#191712] flex flex-col sm:flex-row items-center gap-3 shadow-[3px_3px_0_#191712]">
+                <form onSubmit={handleVerifyOtp} className="p-4 rounded-xl bg-[#f8f6f0] border-2 border-[#18181b] flex flex-col sm:flex-row items-center gap-3 shadow-[3px_3px_0_#18181b]">
                   <div className="flex-1 w-full">
-                    <label className="block font-type text-xs text-[#5d5744] uppercase mb-1">
+                    <label className="block font-type text-xs text-[#52525b] uppercase mb-1">
                       In-Person Handover PIN (Claimant's 6-digit OTP):
                     </label>
                     <input
@@ -233,12 +233,12 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
                       placeholder="e.g. 849201"
                       value={otpInput}
                       onChange={(e) => setOtpInput(e.target.value)}
-                      className="w-full px-3 py-2 font-type tracking-widest text-xl rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712]"
+                      className="w-full px-3 py-2 font-type tracking-widest text-lg rounded-xl border-2 border-[#18181b] bg-white text-[#18181b]"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="sketch-button !text-lg !py-2 sm:mt-auto"
+                    className="sketch-button text-sm !py-2 sm:mt-auto"
                   >
                     Confirm Handover
                   </button>
@@ -247,26 +247,26 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
               {/* Received Claims List */}
               <div className="space-y-3">
-                <h4 className="font-type text-xs text-[#5d5744] uppercase">
+                <h4 className="font-type text-xs text-[#52525b] uppercase font-bold">
                   Received Claims ({details?.claims?.length || 0})
                 </h4>
                 {details?.claims?.length === 0 ? (
-                  <p className="font-neat text-base text-[#5d5744] italic">No claims filed yet.</p>
+                  <p className="font-sans text-sm text-[#71717a] italic">No claims filed yet.</p>
                 ) : (
                   details?.claims?.map((claim) => (
-                    <div key={claim.id} className="p-4 rounded-2xl border-2 border-[#191712] bg-[#fbf6e6] shadow-[2px_3px_0_#191712] space-y-2">
+                    <div key={claim.id} className="p-4 rounded-xl border-2 border-[#18181b] bg-white shadow-[2px_3px_0_#18181b] space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-hand font-bold text-2xl text-[#191712]">{claim.claimant?.fullName}</span>
-                        <span className="stamp-badge bg-[#ffe45e] text-[#191712]">
+                        <span className="font-display font-bold text-base text-[#18181b]">{claim.claimant?.fullName}</span>
+                        <span className="stamp-badge bg-[#fef3c7] text-[#92400e] border-[#fbbf24]">
                           {claim.claimStatus}
                         </span>
                       </div>
 
-                      <div className="bg-[#f2ead4] p-3 rounded-xl border border-[#191712]">
-                        <p className="font-type text-xs text-[#5d5744]">Answer to Secret Question:</p>
-                        <p className="font-neat text-lg text-[#191712] mt-0.5">{claim.proofAnswer}</p>
+                      <div className="bg-[#f8f6f0] p-3 rounded-xl border border-[#18181b]/20">
+                        <p className="font-type text-xs text-[#71717a]">Answer to Secret Question:</p>
+                        <p className="font-sans text-sm text-[#18181b] font-medium mt-0.5">{claim.proofAnswer}</p>
                         {claim.additionalDetails && (
-                          <p className="font-neat text-sm text-[#5d5744] mt-1 italic">Note: {claim.additionalDetails}</p>
+                          <p className="font-sans text-xs text-[#71717a] mt-1 italic">Note: {claim.additionalDetails}</p>
                         )}
                       </div>
 
@@ -274,13 +274,13 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
                         <div className="flex items-center gap-2 pt-1">
                           <button
                             onClick={() => handleUpdateClaim(claim.id, 'APPROVED')}
-                            className="sketch-button !text-base !py-1 !px-3"
+                            className="sketch-button text-xs !py-1.5 !px-3"
                           >
                             Approve & Generate OTP
                           </button>
                           <button
                             onClick={() => handleUpdateClaim(claim.id, 'REJECTED')}
-                            className="sketch-button-secondary !text-base !py-1 !px-3"
+                            className="sketch-button-secondary text-xs !py-1.5 !px-3"
                           >
                             Reject
                           </button>
@@ -295,21 +295,21 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
           {/* Potential Matches */}
           {matches.length > 0 && (
-            <div className="border-t-2 border-dashed border-[#191712]/30 pt-5">
+            <div className="border-t border-dashed border-[#18181b]/20 pt-5">
               <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-5 h-5 text-[#d9584d]" />
-                <h4 className="font-hand font-bold text-2xl text-[#191712]">
+                <Sparkles className="w-4 h-4 text-[#b91c1c]" />
+                <h4 className="font-display font-bold text-lg text-[#18181b]">
                   Possible Matching Belongings on Campus ({matches.length})
                 </h4>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {matches.map((m) => (
-                  <div key={m.id} className="p-3 rounded-xl border-2 border-[#191712] bg-[#f2ead4] shadow-[2px_2px_0_#191712] flex items-center justify-between">
+                  <div key={m.id} className="p-3 rounded-xl border-2 border-[#18181b] bg-[#f8f6f0] shadow-[2px_2px_0_#18181b] flex items-center justify-between">
                     <div>
-                      <p className="font-hand font-bold text-xl text-[#191712] line-clamp-1">{m.title}</p>
-                      <p className="font-type text-[10px] text-[#5d5744]">{m.location?.buildingName}</p>
+                      <p className="font-sans font-bold text-sm text-[#18181b] line-clamp-1">{m.title}</p>
+                      <p className="font-type text-[10px] text-[#71717a]">{m.location?.buildingName}</p>
                     </div>
-                    <span className="stamp-badge bg-[#ffe45e] text-[#191712]">
+                    <span className="stamp-badge bg-[#fef3c7] text-[#92400e] border-[#fbbf24]">
                       {m.itemType}
                     </span>
                   </div>
@@ -320,9 +320,9 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
         </div>
 
         {/* Footer Actions */}
-        <div className="px-6 py-4 border-t-2 border-[#191712] bg-[#f2ead4] flex items-center justify-between shrink-0">
-          <div className="font-type text-xs text-[#5d5744]">
-            PINNED BY: <strong className="text-[#191712]">{details?.user?.fullName || 'Campus Member'}</strong>
+        <div className="px-6 py-4 border-t-2 border-[#18181b] bg-[#f8f6f0] flex items-center justify-between shrink-0">
+          <div className="font-type text-xs text-[#71717a]">
+            PINNED BY: <strong className="text-[#18181b]">{details?.user?.fullName || 'Campus Member'}</strong>
           </div>
 
           {!isOwner && isFound && item.status !== 'RESOLVED' && (
@@ -332,7 +332,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
                 onOpenClaim(item);
               }}
               disabled={hasUserClaimed}
-              className="sketch-button !text-xl !py-2 !px-5"
+              className="sketch-button text-sm !py-2 !px-4"
             >
               {hasUserClaimed ? 'Claim Already Submitted' : 'Claim This Item'}
             </button>

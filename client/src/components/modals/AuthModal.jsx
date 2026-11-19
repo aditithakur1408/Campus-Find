@@ -38,38 +38,38 @@ export default function AuthModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-md w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#18181b]/50 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="relative bg-white rounded-2xl max-w-md w-full border-2 border-[#18181b] shadow-[6px_6px_0_#18181b] overflow-hidden">
         {/* Masking Tape */}
         <div className="tape-sticker" />
 
         {/* Header */}
-        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between">
+        <div className="px-6 pt-6 pb-3 border-b border-dashed border-[#18181b]/20 flex items-center justify-between">
           <div>
-            <h2 className="font-hand font-bold text-3xl text-[#191712]">
+            <h2 className="font-display font-bold text-2xl text-[#18181b]">
               {isRegister ? 'Student Registration' : 'Student & Staff Sign In'}
             </h2>
-            <p className="font-type text-[11px] text-[#d9584d] uppercase tracking-wider">
+            <p className="font-type text-[11px] text-[#b91c1c] uppercase tracking-wider font-bold">
               [CAMPUS CREDENTIALS REQUIRED]
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
+            className="p-1 rounded-lg border-2 border-[#18181b] bg-white hover:bg-[#f1ede4] transition-colors"
           >
-            <X className="w-5 h-5 text-[#191712]" />
+            <X className="w-4 h-4 text-[#18181b]" />
           </button>
         </div>
 
         {/* Tab switch */}
-        <div className="flex border-b-2 border-[#191712] bg-[#f2ead4]">
+        <div className="flex border-b-2 border-[#18181b] bg-[#f1ede4]">
           <button
             type="button"
             onClick={() => { setIsRegister(false); setError(null); }}
-            className={`flex-1 py-2 font-hand font-bold text-xl transition-all ${
+            className={`flex-1 py-2 font-sans font-bold text-sm transition-all ${
               !isRegister
-                ? 'bg-[#fbf6e6] text-[#191712] border-b-2 border-[#d9584d]'
-                : 'text-[#5d5744] hover:text-[#191712]'
+                ? 'bg-white text-[#18181b] border-b-2 border-[#18181b]'
+                : 'text-[#71717a] hover:text-[#18181b]'
             }`}
           >
             Sign In
@@ -77,20 +77,20 @@ export default function AuthModal({ isOpen, onClose }) {
           <button
             type="button"
             onClick={() => { setIsRegister(true); setError(null); }}
-            className={`flex-1 py-2 font-hand font-bold text-xl transition-all ${
+            className={`flex-1 py-2 font-sans font-bold text-sm transition-all ${
               isRegister
-                ? 'bg-[#fbf6e6] text-[#191712] border-b-2 border-[#d9584d]'
-                : 'text-[#5d5744] hover:text-[#191712]'
+                ? 'bg-white text-[#18181b] border-b-2 border-[#18181b]'
+                : 'text-[#71717a] hover:text-[#18181b]'
             }`}
           >
-            New Student Register
+            New Registration
           </button>
         </div>
 
         {/* Error Alert */}
         {error && (
-          <div className="mx-6 mt-4 p-3 rounded-xl bg-[#ffc9dc] border-2 border-[#191712] flex items-center gap-2 font-neat text-base text-[#191712] shadow-[2px_2px_0_#191712]">
-            <AlertCircle className="w-5 h-5 text-[#d9584d] shrink-0" />
+          <div className="mx-6 mt-4 p-3 rounded-xl bg-[#fee2e2] border-2 border-[#18181b] flex items-center gap-2 font-sans text-sm text-[#991b1b] shadow-[2px_2px_0_#18181b]">
+            <AlertCircle className="w-4 h-4 text-[#b91c1c] shrink-0" />
             <span>{error}</span>
           </div>
         )}
@@ -100,44 +100,44 @@ export default function AuthModal({ isOpen, onClose }) {
           {isRegister && (
             <>
               <div>
-                <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Your Full Name</label>
+                <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Your Full Name</label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-[#5d5744] absolute left-3 top-3" />
+                  <User className="w-4 h-4 text-[#71717a] absolute left-3 top-3" />
                   <input
                     type="text"
                     required
                     placeholder="e.g. Rajveer Singh"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full pl-9 pr-3 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+                    className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">College Roll / Student ID</label>
+                <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">College Roll / Student ID</label>
                 <div className="relative">
-                  <IdCard className="w-4 h-4 text-[#5d5744] absolute left-3 top-3" />
+                  <IdCard className="w-4 h-4 text-[#71717a] absolute left-3 top-3" />
                   <input
                     type="text"
                     placeholder="e.g. 2102508787"
                     value={formData.studentId}
                     onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
-                    className="w-full pl-9 pr-3 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+                    className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Role Type</label>
+                <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Role Type</label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, role: 'STUDENT' })}
-                    className={`py-1.5 px-3 rounded-xl border-2 border-[#191712] font-hand font-bold text-lg flex items-center justify-center gap-1.5 ${
+                    className={`py-1.5 px-3 rounded-lg border-2 border-[#18181b] font-sans font-semibold text-xs flex items-center justify-center gap-1.5 ${
                       formData.role === 'STUDENT'
-                        ? 'bg-[#ffe45e] shadow-[2px_2px_0_#191712]'
-                        : 'bg-[#f2ead4] text-[#5d5744]'
+                        ? 'bg-[#18181b] text-white shadow-[2px_2px_0_#18181b]'
+                        : 'bg-[#f8f6f0] text-[#71717a]'
                     }`}
                   >
                     <User className="w-4 h-4" />
@@ -146,10 +146,10 @@ export default function AuthModal({ isOpen, onClose }) {
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, role: 'SECURITY_STAFF' })}
-                    className={`py-1.5 px-3 rounded-xl border-2 border-[#191712] font-hand font-bold text-lg flex items-center justify-center gap-1.5 ${
+                    className={`py-1.5 px-3 rounded-lg border-2 border-[#18181b] font-sans font-semibold text-xs flex items-center justify-center gap-1.5 ${
                       formData.role === 'SECURITY_STAFF'
-                        ? 'bg-[#ffe45e] shadow-[2px_2px_0_#191712]'
-                        : 'bg-[#f2ead4] text-[#5d5744]'
+                        ? 'bg-[#18181b] text-white shadow-[2px_2px_0_#18181b]'
+                        : 'bg-[#f8f6f0] text-[#71717a]'
                     }`}
                   >
                     <Shield className="w-4 h-4" />
@@ -161,24 +161,24 @@ export default function AuthModal({ isOpen, onClose }) {
           )}
 
           <div>
-            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Campus Email</label>
+            <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Campus Email</label>
             <div className="relative">
-              <Mail className="w-4 h-4 text-[#5d5744] absolute left-3 top-3" />
+              <Mail className="w-4 h-4 text-[#71717a] absolute left-3 top-3" />
               <input
                 type="email"
                 required
                 placeholder="2102508787@svyasa-sas.edu.in"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full pl-9 pr-3 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">Password</label>
+            <label className="block font-type text-xs text-[#52525b] uppercase tracking-wider mb-1 font-semibold">Password</label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-[#5d5744] absolute left-3 top-3" />
+              <Lock className="w-4 h-4 text-[#71717a] absolute left-3 top-3" />
               <input
                 type="password"
                 required
@@ -186,7 +186,7 @@ export default function AuthModal({ isOpen, onClose }) {
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full pl-9 pr-3 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border-2 border-[#18181b] bg-white text-[#18181b] shadow-[2px_2px_0_#18181b]"
               />
             </div>
           </div>
@@ -195,7 +195,7 @@ export default function AuthModal({ isOpen, onClose }) {
             <button
               type="submit"
               disabled={loading}
-              className="sketch-button w-full !text-xl !py-2.5"
+              className="sketch-button w-full text-base !py-2.5"
             >
               {loading ? 'Verifying...' : isRegister ? 'Create College Account' : 'Sign In Now'}
             </button>

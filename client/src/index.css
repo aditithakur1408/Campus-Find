@@ -1,28 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Special+Elite&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --paper: #fbf6e6;
-  --paper-deep: #f2ead4;
-  --ink: #191712;
-  --ink-soft: #5d5744;
-  --rule: rgba(120, 165, 205, 0.32);
-  --red: #d9584d;
-  --marker: #ffe45e;
-  --mint: #b8ecd0;
-  --pink: #ffc9dc;
-  --blue: #c2e5f7;
-  --yellow: #ffeaa0;
-  --tape: rgba(246, 228, 150, 0.72);
-  --hand: 'Caveat', cursive;
-  --neat: 'Patrick Hand', cursive;
-  --type: 'Special Elite', monospace;
-  --sketch: 255px 14px 225px 16px / 16px 225px 14px 255px;
-  --sketch-sm: 180px 10px 160px 12px / 12px 170px 10px 180px;
-  --ink-line: 2.5px solid var(--ink);
+  --paper: #faf8f5;
+  --paper-deep: #f1ede4;
+  --paper-card: #ffffff;
+  --ink: #18181b;
+  --ink-soft: #52525b;
+  --ink-muted: #71717a;
+  --rule: rgba(24, 24, 27, 0.04);
+  --margin-line: rgba(185, 28, 28, 0.14);
+  --red: #b91c1c;
+  --marker: #fef08a;
+  --amber: #f59e0b;
+  --emerald: #15803d;
+  --navy: #1e40af;
+  --tape: rgba(235, 222, 185, 0.65);
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-hand: 'Caveat', cursive;
+  --font-neat: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-type: 'Special Elite', monospace;
+  --sketch: 14px;
+  --sketch-sm: 10px;
+  --ink-line: 2px solid var(--ink);
 }
 
 * {
@@ -42,27 +46,12 @@ body {
   color: var(--ink);
   background-color: var(--paper);
   background-image: 
-    linear-gradient(90deg, transparent 0 calc(clamp(20px, 4vw, 36px) + 34px), rgba(217, 88, 77, 0.45) calc(clamp(20px, 4vw, 36px) + 35px), transparent calc(clamp(20px, 4vw, 36px) + 37px)),
-    repeating-linear-gradient(180deg, transparent 0, transparent 33px, var(--rule) 33px, var(--rule) 34px);
-  font-family: var(--neat);
-  font-size: 19px;
-  line-height: 1.45;
+    linear-gradient(90deg, transparent 0 calc(clamp(20px, 4vw, 36px) + 34px), var(--margin-line) calc(clamp(20px, 4vw, 36px) + 35px), transparent calc(clamp(20px, 4vw, 36px) + 37px)),
+    repeating-linear-gradient(180deg, transparent 0, transparent 35px, var(--rule) 35px, var(--rule) 36px);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-}
-
-/* Punch-hole spiral binding along left margin */
-body::before {
-  content: '';
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 26px;
-  pointer-events: none;
-  opacity: 0.7;
-  background-image: repeating-radial-gradient(circle at 13px 26px, rgba(25, 23, 18, 0.22) 0 7px, transparent 7.5px 8px);
-  background-size: 26px 74px;
 }
 
 /* Subtle paper texture */
@@ -72,69 +61,74 @@ body::after {
   z-index: -1;
   inset: 0;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.12;
   mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
 }
 
 /* Heading Typography */
 h1, h2, h3, h4 {
-  font-family: var(--hand);
+  font-family: var(--font-display);
   color: var(--ink);
-  line-height: 1.05;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
-/* Special Typewriter & Handwriting utilities */
-.font-hand { font-family: var(--hand); }
-.font-neat { font-family: var(--neat); }
-.font-type { font-family: var(--type); }
+/* Typography utilities */
+.font-hand { font-family: var(--font-hand); }
+.font-display { font-family: var(--font-display); }
+.font-sans { font-family: var(--font-sans); }
+.font-neat { font-family: var(--font-neat); }
+.font-type { font-family: var(--font-type); }
 
-/* Highlighter pen effect */
+/* Highlighter pen effect - refined subtle warm glow */
 .highlight-pen {
-  background-image: linear-gradient(104deg, transparent 0.5%, var(--marker) 2.2%, var(--marker) 95.5%, transparent 98.5%);
-  padding: 0 0.16em;
-  border-radius: 0.25em;
+  background-image: linear-gradient(104deg, transparent 0.5%, #fef08a 2.2%, #fef08a 95.5%, transparent 98.5%);
+  padding: 0.05em 0.25em;
+  border-radius: 4px;
 }
 
 .highlight-mint {
-  background-image: linear-gradient(104deg, transparent 0.5%, var(--mint) 2.2%, var(--mint) 95.5%, transparent 98.5%);
-  padding: 0 0.16em;
-  border-radius: 0.25em;
+  background-image: linear-gradient(104deg, transparent 0.5%, #dcfce7 2.2%, #dcfce7 95.5%, transparent 98.5%);
+  padding: 0.05em 0.25em;
+  border-radius: 4px;
 }
 
 .highlight-pink {
-  background-image: linear-gradient(104deg, transparent 0.5%, var(--pink) 2.2%, var(--pink) 95.5%, transparent 98.5%);
-  padding: 0 0.16em;
-  border-radius: 0.25em;
+  background-image: linear-gradient(104deg, transparent 0.5%, #fee2e2 2.2%, #fee2e2 95.5%, transparent 98.5%);
+  padding: 0.05em 0.25em;
+  border-radius: 4px;
 }
 
-/* Raasta Sketch Button */
+/* Collegiate Sketch Button */
 .sketch-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border: var(--ink-line);
-  border-radius: var(--sketch);
+  border-radius: 12px;
   padding: 8px 18px;
-  color: var(--paper) !important;
+  color: #faf8f5 !important;
   background: var(--ink) !important;
-  font-family: var(--hand) !important;
-  font-weight: 700 !important;
-  font-size: 1.25rem !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
   text-decoration: none !important;
-  box-shadow: 4px 5px 0 var(--paper), 6px 7px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
   cursor: pointer;
 }
 
 .sketch-button:hover {
-  background: var(--marker) !important;
-  color: var(--ink) !important;
+  background: #27272a !important;
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 0 var(--ink);
+  color: #ffffff !important;
 }
 
 .sketch-button:active {
-  transform: translate(5px, 6px);
+  transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--ink);
 }
 
@@ -144,54 +138,56 @@ h1, h2, h3, h4 {
   justify-content: center;
   gap: 8px;
   border: var(--ink-line);
-  border-radius: var(--sketch);
+  border-radius: 12px;
   padding: 7px 16px;
   color: var(--ink) !important;
-  background: var(--paper) !important;
-  font-family: var(--hand) !important;
-  font-weight: 700 !important;
-  font-size: 1.15rem !important;
-  box-shadow: 3px 4px 0 var(--paper-deep), 4px 5px 0 var(--ink);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  background: #ffffff !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  font-size: 0.92rem !important;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
   cursor: pointer;
 }
 
 .sketch-button-secondary:hover {
-  background: var(--marker) !important;
+  background: var(--paper-deep) !important;
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 var(--ink);
 }
 
 .sketch-button-secondary:active {
-  transform: translate(4px, 4px);
-  box-shadow: none;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
 }
 
 /* Notebook Panel / Card */
 .notebook-card {
   position: relative;
-  background: var(--paper);
+  background: #ffffff;
   border: var(--ink-line);
-  border-radius: var(--sketch);
-  box-shadow: 4px 6px 0 rgba(25, 23, 18, 0.15);
+  border-radius: 16px;
+  box-shadow: 3px 4px 0 rgba(24, 24, 27, 0.14);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .notebook-card:hover {
-  transform: translateY(-2px) rotate(-0.3deg);
-  box-shadow: 6px 9px 0 rgba(25, 23, 18, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 5px 7px 0 var(--ink);
 }
 
 /* Tape sticker across top of cards */
 .tape-sticker {
   position: absolute;
-  top: -12px;
+  top: -10px;
   left: 50%;
-  transform: translateX(-50%) rotate(-1.5deg);
-  width: 90px;
-  height: 24px;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 75px;
+  height: 20px;
   background: var(--tape);
-  border-left: 1px dashed rgba(25, 23, 18, 0.22);
-  border-right: 1px dashed rgba(25, 23, 18, 0.22);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-left: 1px dashed rgba(24, 24, 27, 0.2);
+  border-right: 1px dashed rgba(24, 24, 27, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   pointer-events: none;
   z-index: 10;
 }
@@ -199,8 +195,8 @@ h1, h2, h3, h4 {
 /* Sticky Note Style */
 .sticky-note {
   border: var(--ink-line);
-  border-radius: var(--sketch-sm);
-  box-shadow: 4px 5px 0 rgba(25, 23, 18, 0.14);
+  border-radius: 14px;
+  box-shadow: 3px 4px 0 var(--ink);
 }
 
 /* Stamp Badge */
@@ -208,45 +204,46 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  border: 2px solid var(--ink);
-  border-radius: 9999px;
-  padding: 2px 10px;
-  font-family: var(--type);
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-family: var(--font-type);
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 /* Dashed divider */
 .notebook-divider {
-  border-top: 2px dashed rgba(25, 23, 18, 0.32);
+  border-top: 1.5px dashed rgba(24, 24, 27, 0.2);
 }
 
 /* Input Fields inside Notebook */
 input, textarea, select {
-  font-family: var(--neat);
+  font-family: var(--font-sans);
 }
 
 input:focus, textarea:focus, select:focus {
-  outline: 2.5px dashed var(--red);
-  outline-offset: 2px;
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
 }
 
 /* Interactive Sketch & Doodle Keyframes */
 @keyframes scribble {
-  0% { transform: rotate(-2deg) translate(0, 0); }
-  50% { transform: rotate(2deg) translate(2px, -1px); }
-  100% { transform: rotate(-2deg) translate(0, 0); }
+  0% { transform: rotate(-1deg) translate(0, 0); }
+  50% { transform: rotate(1deg) translate(1px, -1px); }
+  100% { transform: rotate(-1deg) translate(0, 0); }
 }
 
 @keyframes pinWiggle {
-  0%, 100% { transform: rotate(-6deg); }
-  50% { transform: rotate(6deg); }
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
 }
 
 @keyframes paperFlap {
   0%, 100% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(1.5deg) scale(1.02); }
+  50% { transform: rotate(1deg) scale(1.01); }
 }
 
 .animate-scribble {
@@ -265,20 +262,20 @@ input:focus, textarea:focus, select:focus {
 .otp-digit-box {
   width: 48px;
   height: 56px;
-  border: 2.5px solid var(--ink);
-  border-radius: var(--sketch-sm);
-  background: var(--paper);
-  font-family: var(--type);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: #ffffff;
+  font-family: var(--font-type);
   font-size: 1.75rem;
   font-weight: bold;
   text-align: center;
-  box-shadow: 2px 3px 0 rgba(25, 23, 18, 0.18);
+  box-shadow: 2px 3px 0 var(--ink);
   transition: all 0.15s ease;
 }
 
 .otp-digit-box:focus {
-  background: var(--marker);
+  background: #fef9c3;
   transform: translateY(-2px);
-  box-shadow: 3px 5px 0 var(--ink);
+  box-shadow: 3px 4px 0 var(--ink);
   outline: none;
 }

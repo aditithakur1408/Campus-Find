@@ -6,26 +6,26 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
   const { user, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 bg-[#fbf6e6]/90 backdrop-blur-md border-b-[2.5px] border-[#191712]">
+    <header className="sticky top-0 z-40 bg-[#faf8f5]/90 backdrop-blur-md border-b-2 border-[#18181b]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-18 py-2">
+        <div className="flex items-center justify-between h-16 py-2">
           {/* Logo */}
           <div 
             className="flex items-center gap-2.5 cursor-pointer group select-none" 
             onClick={() => setActiveTab('ALL')}
           >
-            <div className="w-10 h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] hover:bg-[#b8ecd0] flex items-center justify-center font-hand font-bold text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712]">
+            <div className="w-9 h-9 rounded-xl border-2 border-[#18181b] bg-[#18181b] flex items-center justify-center font-display font-bold text-base text-white shadow-[2px_2px_0_#18181b] group-hover:scale-105 transition-transform">
               CF
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-hand font-bold text-3xl sm:text-4xl text-[#191712] tracking-tight">
-                Campus<span className="underline decoration-wavy decoration-[#d9584d] decoration-2">Find</span>
+            <div className="flex items-baseline gap-1">
+              <span className="font-display font-bold text-2xl sm:text-3xl text-[#18181b] tracking-tight">
+                Campus<span className="text-[#b91c1c]">Find</span>
               </span>
             </div>
           </div>
 
           {/* Paper Navigation Tabs */}
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-1.5">
             {[
               { id: 'ALL', label: 'All Notices' },
               { id: 'LOST', label: 'Lost Belongings' },
@@ -34,10 +34,10 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`font-hand font-bold text-xl px-3.5 py-1 rounded-lg border-b-2 transition-all ${
+                className={`font-sans font-semibold text-sm px-3.5 py-1.5 rounded-xl transition-all ${
                   activeTab === tab.id
-                    ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e]/50'
-                    : 'border-transparent text-[#5d5744] hover:text-[#191712] hover:bg-[#f2ead4]'
+                    ? 'border-2 border-[#18181b] bg-[#18181b] text-white shadow-[2px_2px_0_#18181b]'
+                    : 'border-2 border-transparent text-[#52525b] hover:text-[#18181b] hover:bg-[#f1ede4]'
                 }`}
               >
                 {tab.label}
@@ -50,37 +50,37 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
             {/* Activity Log Button */}
             <button
               onClick={onOpenActivity}
-              title="View Who Logged In & Registry Activity"
-              className="sketch-button-secondary text-sm !py-1.5 !px-3"
+              title="View Registry Logbook"
+              className="sketch-button-secondary text-xs !py-1.5 !px-3"
             >
-              <Activity className="w-4 h-4 text-[#d9584d]" />
+              <Activity className="w-3.5 h-3.5 text-[#b91c1c]" />
               <span className="hidden sm:inline">Logbook</span>
             </button>
 
             {/* Report Item CTA */}
             <button
               onClick={onOpenReport}
-              className="sketch-button text-sm !py-1.5 !px-3.5"
+              className="sketch-button text-xs !py-1.5 !px-3.5"
             >
-              <PlusCircle className="w-4 h-4" />
+              <PlusCircle className="w-3.5 h-3.5" />
               <span>Post Notice</span>
             </button>
 
             {/* User Profile / Auth */}
             {user ? (
-              <div className="flex items-center gap-2 pl-2 border-l-2 border-dashed border-[#191712]/30">
-                <div className="flex items-center gap-2 bg-[#f2ead4] px-3 py-1 rounded-xl border-2 border-[#191712] shadow-[2px_2px_0_#191712]">
-                  <div className="w-6 h-6 rounded-full bg-[#ffe45e] border border-[#191712] text-[#191712] flex items-center justify-center font-hand font-bold text-xs">
+              <div className="flex items-center gap-2 pl-2 border-l border-dashed border-[#18181b]/30">
+                <div className="flex items-center gap-2 bg-white px-2.5 py-1 rounded-xl border-2 border-[#18181b] shadow-[2px_2px_0_#18181b]">
+                  <div className="w-5 h-5 rounded-md bg-[#18181b] text-white flex items-center justify-center font-display font-bold text-xs">
                     {user.fullName ? user.fullName[0].toUpperCase() : 'U'}
                   </div>
-                  <span className="font-hand font-bold text-base text-[#191712] hidden lg:inline">
+                  <span className="font-sans font-semibold text-xs text-[#18181b] hidden lg:inline">
                     {user.fullName}
                   </span>
                 </div>
                 <button
                   onClick={logout}
                   title="Logout"
-                  className="p-1.5 text-[#5d5744] hover:text-[#d9584d] transition-colors"
+                  className="p-1 text-[#71717a] hover:text-[#b91c1c] transition-colors"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -88,9 +88,9 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
             ) : (
               <button
                 onClick={onOpenAuth}
-                className="sketch-button-secondary text-sm !py-1.5 !px-3.5"
+                className="sketch-button-secondary text-xs !py-1.5 !px-3.5"
               >
-                <User className="w-4 h-4" />
+                <User className="w-3.5 h-3.5" />
                 <span>Sign In</span>
               </button>
             )}
