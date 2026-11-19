@@ -42,21 +42,21 @@ export default function ClaimModal({ isOpen, onClose, item, onClaimSubmitted }) 
         <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between">
           <div>
             <h2 className="font-hand font-bold text-3xl text-[#191712]">Submit Ownership Proof</h2>
-            <p className="font-type text-[11px] text-[#eb4d4b] uppercase tracking-wider font-bold">
+            <p className="font-type text-[11px] text-[#d9584d] uppercase tracking-wider">
               [CLAIM FOR: "{item.title}"]
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffd32a] transition-colors"
+            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
           >
             <X className="w-5 h-5 text-[#191712]" />
           </button>
         </div>
 
         {error && (
-          <div className="mx-6 mt-4 p-3 rounded-xl bg-[#ff7979] border-2 border-[#191712] font-neat text-lg text-[#191712] flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 text-[#eb4d4b] shrink-0" />
+          <div className="mx-6 mt-4 p-3 rounded-xl bg-[#ffc9dc] border-2 border-[#191712] font-neat text-base text-[#191712] flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 text-[#d9584d] shrink-0" />
             <span>{error}</span>
           </div>
         )}
@@ -64,18 +64,18 @@ export default function ClaimModal({ isOpen, onClose, item, onClaimSubmitted }) 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {/* Question Prompt */}
           {item.proofQuestion ? (
-            <div className="p-4 rounded-2xl bg-[#ffd32a] border-2 border-[#191712] shadow-[3px_3px_0_#191712]">
-              <p className="font-type text-xs text-[#5d5744] uppercase font-bold">Verification Question from Finder:</p>
+            <div className="p-4 rounded-2xl bg-[#ffe45e] border-2 border-[#191712] shadow-[3px_3px_0_#191712]">
+              <p className="font-type text-xs text-[#5d5744] uppercase">Verification Question from Finder:</p>
               <p className="font-hand font-bold text-2xl text-[#191712] mt-1 italic">"{item.proofQuestion}"</p>
             </div>
           ) : (
-            <div className="p-4 rounded-2xl bg-[#70a1ff] border-2 border-[#191712] font-neat text-lg text-[#191712] shadow-[3px_3px_0_#191712]">
+            <div className="p-4 rounded-2xl bg-[#c2e5f7] border-2 border-[#191712] font-neat text-lg text-[#191712] shadow-[3px_3px_0_#191712]">
               Please describe unique details or identifying marks only the real owner would know.
             </div>
           )}
 
           <div>
-            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1 font-bold">
+            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">
               Your Proof Answer *
             </label>
             <textarea
@@ -84,12 +84,12 @@ export default function ClaimModal({ isOpen, onClose, item, onClaimSubmitted }) 
               placeholder="e.g. The wallpaper is a photo of a mountain, and the sticker on top-right is GitHub octocat."
               value={proofAnswer}
               onChange={(e) => setProofAnswer(e.target.value)}
-              className="w-full px-3.5 py-2 text-xl rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+              className="w-full px-3.5 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
             />
           </div>
 
           <div>
-            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1 font-bold">
+            <label className="block font-type text-xs text-[#5d5744] uppercase tracking-wider mb-1">
               Additional Details / Serial Number / Note
             </label>
             <input
@@ -97,7 +97,7 @@ export default function ClaimModal({ isOpen, onClose, item, onClaimSubmitted }) 
               placeholder="Optional notes or contact preference"
               value={additionalDetails}
               onChange={(e) => setAdditionalDetails(e.target.value)}
-              className="w-full px-3.5 py-2 text-xl rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
+              className="w-full px-3.5 py-2 text-lg rounded-xl border-2 border-[#191712] bg-[#fbf6e6] text-[#191712] shadow-[2px_2px_0_#191712]"
             />
           </div>
 

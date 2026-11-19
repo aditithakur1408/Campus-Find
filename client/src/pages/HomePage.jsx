@@ -35,16 +35,16 @@ export default function HomePage({
         {/* Floating Circular Rubber Stamp */}
         <div 
           title="Campus Verified Handover Station"
-          className="hidden lg:grid place-items-center absolute right-8 top-12 w-32 h-32 rounded-full border-[3px] border-[#191712] bg-[#ffd32a] hover:bg-[#2ed573] text-[#191712] font-hand font-bold text-center leading-none transform rotate-12 hover:rotate-3 hover:scale-105 transition-all duration-300 shadow-[4px_6px_0_#191712] cursor-pointer select-none group"
+          className="hidden lg:grid place-items-center absolute right-8 top-12 w-32 h-32 rounded-full border-[3px] border-[#191712] bg-[#b8ecd0] hover:bg-[#ffe45e] text-[#191712] font-hand font-bold text-center leading-none transform rotate-12 hover:rotate-3 hover:scale-105 transition-all duration-300 shadow-[4px_6px_0_rgba(25,23,18,0.2)] cursor-pointer select-none group"
         >
-          <div className="text-xs uppercase tracking-wider font-type text-[#eb4d4b] group-hover:text-[#191712] transition-colors">CAMPUS</div>
+          <div className="text-xs uppercase tracking-wider font-type text-[#5d5744] group-hover:text-[#d9584d] transition-colors">CAMPUS</div>
           <div className="text-3xl mt-1 text-[#191712]">VERIFIED</div>
-          <div className="text-[11px] font-type text-[#eb4d4b] mt-1 group-hover:text-[#191712] transition-colors">SAFE RETURN</div>
+          <div className="text-[11px] font-type text-[#d9584d] mt-1 group-hover:text-[#191712] transition-colors">SAFE RETURN</div>
         </div>
 
         <div className="max-w-2xl">
-          <p className="font-type text-xs text-[#eb4d4b] uppercase tracking-widest mb-3 flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#eb4d4b] animate-ping" />
+          <p className="font-type text-xs text-[#d9584d] uppercase tracking-widest mb-3 flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#d9584d] animate-ping" />
             <span>CAMPUS LOST & FOUND PLATFORM</span>
           </p>
 
@@ -59,14 +59,14 @@ export default function HomePage({
 
           {/* Search Box */}
           <form onSubmit={onSearchSubmit} className="mt-8 flex items-center gap-3 max-w-xl">
-            <div className="flex-1 flex items-center gap-2 px-4 py-2.5 bg-[#fbf6e6] border-[2.5px] border-[#191712] rounded-[180px_10px_160px_12px/12px_170px_10px_180px] shadow-[3px_4px_0_#191712] focus-within:shadow-[4px_6px_0_#191712] transition-shadow">
+            <div className="flex-1 flex items-center gap-2 px-4 py-2.5 bg-[#fbf6e6] border-[2.5px] border-[#191712] rounded-[180px_10px_160px_12px/12px_170px_10px_180px] shadow-[3px_4px_0_rgba(25,23,18,0.15)] focus-within:shadow-[4px_6px_0_#191712] transition-shadow">
               <Search className="w-5 h-5 text-[#5d5744]" />
               <input
                 type="text"
                 placeholder="Search lost IDs, laptops, keys, wallets, calculators..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent font-neat text-xl text-[#191712] placeholder-[#5d5744]/70 focus:outline-none"
+                className="w-full bg-transparent font-neat text-xl text-[#191712] placeholder-[#5d5744]/60 focus:outline-none"
               />
             </div>
             <button
@@ -83,7 +83,7 @@ export default function HomePage({
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pb-20">
         {/* Section 1: Recovery Overview */}
         <section className="mb-14">
-          <div className="flex items-center gap-2 mb-2 font-type text-xs text-[#5d5744] uppercase tracking-wider font-bold">
+          <div className="flex items-center gap-2 mb-2 font-type text-xs text-[#5d5744] uppercase tracking-wider">
             <span>[1] CAMPUS RECOVERY SNAPSHOT</span>
           </div>
           <StatsBar stats={stats} />
@@ -93,10 +93,10 @@ export default function HomePage({
         <section className="pt-8 border-t-2 border-dashed border-[#191712]/30">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
-              <div className="flex items-center gap-2 font-type text-xs text-[#eb4d4b] uppercase tracking-wider font-bold">
+              <div className="flex items-center gap-2 font-type text-xs text-[#d9584d] uppercase tracking-wider">
                 <span>[2] THE LIVE PINBOARD</span>
               </div>
-              <h2 className="font-hand font-bold text-4xl sm:text-5xl text-[#191712] mt-1">
+              <h2 className="font-hand font-bold text-4xl text-[#191712] mt-1">
                 Browse Campus Notices
               </h2>
             </div>
@@ -106,9 +106,9 @@ export default function HomePage({
               <button
                 type="button"
                 onClick={() => setFilterMode('CATEGORIES')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl font-hand font-bold text-xl transition-all duration-200 cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-hand font-bold text-lg transition-all duration-200 cursor-pointer ${
                   filterMode === 'CATEGORIES'
-                    ? 'bg-[#ffd32a] text-[#191712] shadow-[2px_2px_0_#191712]'
+                    ? 'bg-[#ffe45e] text-[#191712] shadow-[2px_2px_0_#191712]'
                     : 'text-[#5d5744] hover:text-[#191712]'
                 }`}
               >
@@ -119,9 +119,9 @@ export default function HomePage({
               <button
                 type="button"
                 onClick={() => setFilterMode('LOCATIONS')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl font-hand font-bold text-xl transition-all duration-200 cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-hand font-bold text-lg transition-all duration-200 cursor-pointer ${
                   filterMode === 'LOCATIONS'
-                    ? 'bg-[#70a1ff] text-[#191712] shadow-[2px_2px_0_#191712]'
+                    ? 'bg-[#c2e5f7] text-[#191712] shadow-[2px_2px_0_#191712]'
                     : 'text-[#5d5744] hover:text-[#191712]'
                 }`}
               >
@@ -132,7 +132,7 @@ export default function HomePage({
           </div>
 
           {/* Active Filter Drawer */}
-          <div className="bg-[#f2ead4]/70 p-4 rounded-[255px_14px_225px_16px/16px_225px_14px_255px] border-2 border-[#191712] mb-8 shadow-[3px_4px_0_#191712]">
+          <div className="bg-[#f2ead4]/60 p-4 rounded-[255px_14px_225px_16px/16px_225px_14px_255px] border-2 border-[#191712] mb-8 shadow-[3px_4px_0_rgba(25,23,18,0.1)]">
             {filterMode === 'CATEGORIES' ? (
               <CategoryFilterBar
                 categories={categories}
@@ -151,33 +151,33 @@ export default function HomePage({
           {/* Active Filters Pill Summary Bar */}
           <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b-2 border-dashed border-[#191712]/20 font-type text-xs text-[#5d5744]">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="font-type text-xs text-[#191712] uppercase tracking-wider font-bold">
+              <span className="font-type text-xs text-[#191712] uppercase tracking-wider">
                 SHOWING: <strong>{items.length}</strong> NOTICES PINNED
               </span>
 
               {selectedCategory && (
-                <span className="inline-flex items-center gap-1.5 bg-[#ffd32a] px-3 py-1 rounded-xl border-2 border-[#191712] text-[#191712] font-hand font-bold text-lg shadow-[2px_2px_0_#191712]">
+                <span className="inline-flex items-center gap-1.5 bg-[#ffe45e] px-2.5 py-1 rounded-lg border-2 border-[#191712] text-[#191712] font-hand font-bold text-base shadow-[1px_2px_0_#191712]">
                   <span>Category: {selectedCategoryName || selectedCategory}</span>
-                  <button onClick={() => setSelectedCategory('')} className="hover:text-[#eb4d4b]">
-                    <X className="w-4 h-4" />
+                  <button onClick={() => setSelectedCategory('')} className="hover:text-[#d9584d]">
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </span>
               )}
 
               {selectedLocation && (
-                <span className="inline-flex items-center gap-1.5 bg-[#70a1ff] px-3 py-1 rounded-xl border-2 border-[#191712] text-[#191712] font-hand font-bold text-lg shadow-[2px_2px_0_#191712]">
+                <span className="inline-flex items-center gap-1.5 bg-[#c2e5f7] px-2.5 py-1 rounded-lg border-2 border-[#191712] text-[#191712] font-hand font-bold text-base shadow-[1px_2px_0_#191712]">
                   <span>Spot: {selectedLocationName || selectedLocation}</span>
-                  <button onClick={() => setSelectedLocation('')} className="hover:text-[#eb4d4b]">
-                    <X className="w-4 h-4" />
+                  <button onClick={() => setSelectedLocation('')} className="hover:text-[#d9584d]">
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </span>
               )}
 
               {searchQuery && (
-                <span className="inline-flex items-center gap-1.5 bg-[#ff7979] px-3 py-1 rounded-xl border-2 border-[#191712] text-[#191712] font-hand font-bold text-lg shadow-[2px_2px_0_#191712]">
+                <span className="inline-flex items-center gap-1.5 bg-[#ffc9dc] px-2.5 py-1 rounded-lg border-2 border-[#191712] text-[#191712] font-hand font-bold text-base shadow-[1px_2px_0_#191712]">
                   <span>"{searchQuery}"</span>
-                  <button onClick={() => setSearchQuery('')} className="hover:text-[#eb4d4b]">
-                    <X className="w-4 h-4" />
+                  <button onClick={() => setSearchQuery('')} className="hover:text-[#d9584d]">
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </span>
               )}
@@ -189,7 +189,7 @@ export default function HomePage({
                     setSelectedLocation('');
                     setSearchQuery('');
                   }}
-                  className="font-hand font-bold text-xl text-[#eb4d4b] hover:underline px-2"
+                  className="font-hand font-bold text-lg text-[#d9584d] hover:underline px-2"
                 >
                   Clear all filters
                 </button>
@@ -199,10 +199,10 @@ export default function HomePage({
             <button
               onClick={onRefresh}
               title="Refresh Pinboard"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border-2 border-[#191712] bg-[#fbf6e6] hover:bg-[#ffd32a] transition-all duration-200 cursor-pointer shadow-[2px_2px_0_#191712]"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border-2 border-[#191712] bg-[#fbf6e6] hover:bg-[#ffe45e] transition-all duration-200 cursor-pointer shadow-[2px_2px_0_#191712]"
             >
               <RefreshCw className="w-3.5 h-3.5 text-[#191712]" />
-              <span className="font-hand font-bold text-lg text-[#191712]">Refresh Feed</span>
+              <span className="font-hand font-bold text-base text-[#191712]">Refresh Feed</span>
             </button>
           </div>
 
@@ -210,8 +210,8 @@ export default function HomePage({
           {loading ? (
             <SketchLoader message="Searching campus pinboard for notices..." />
           ) : items.length === 0 ? (
-            <div className="py-24 text-center bg-[#f2ead4] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] border-[2.5px] border-dashed border-[#191712] p-8 max-w-lg mx-auto shadow-[4px_5px_0_#191712]">
-              <div className="w-16 h-16 rounded-full border-[2.5px] border-[#191712] bg-[#ffd32a] text-[#191712] flex items-center justify-center mx-auto mb-4 animate-pin shadow-[3px_3px_0_#191712]">
+            <div className="py-24 text-center bg-[#f2ead4] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] border-[2.5px] border-dashed border-[#191712] p-8 max-w-lg mx-auto shadow-[4px_5px_0_rgba(25,23,18,0.1)]">
+              <div className="w-16 h-16 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] text-[#191712] flex items-center justify-center mx-auto mb-4 animate-pin shadow-[3px_3px_0_#191712]">
                 <Pin className="w-8 h-8" />
               </div>
               <h3 className="font-hand font-bold text-4xl text-[#191712]">No notices pinned here yet</h3>
@@ -220,7 +220,7 @@ export default function HomePage({
               </p>
               <button
                 onClick={onOpenReport}
-                className="sketch-button mt-6 !text-2xl !py-2.5 !px-5"
+                className="sketch-button mt-6 !text-xl !py-2.5 !px-5"
               >
                 <PlusCircle className="w-5 h-5" />
                 <span>Pin a Notice Now</span>

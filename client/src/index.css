@@ -10,14 +10,13 @@
   --ink: #191712;
   --ink-soft: #5d5744;
   --rule: rgba(120, 165, 205, 0.32);
-  --red: #eb4d4b;
-  --coral: #ff7979;
-  --marker: #ffd32a;
-  --mint: #2ed573;
-  --blue: #70a1ff;
-  --cyan: #4bcffa;
-  --purple: #c56cf0;
-  --tape: rgba(255, 230, 130, 0.75);
+  --red: #d9584d;
+  --marker: #ffe45e;
+  --mint: #b8ecd0;
+  --pink: #ffc9dc;
+  --blue: #c2e5f7;
+  --yellow: #ffeaa0;
+  --tape: rgba(246, 228, 150, 0.72);
   --hand: 'Caveat', cursive;
   --neat: 'Patrick Hand', cursive;
   --type: 'Special Elite', monospace;
@@ -43,12 +42,27 @@ body {
   color: var(--ink);
   background-color: var(--paper);
   background-image: 
-    linear-gradient(90deg, transparent 0 calc(clamp(20px, 4vw, 36px) + 34px), rgba(235, 77, 75, 0.45) calc(clamp(20px, 4vw, 36px) + 35px), transparent calc(clamp(20px, 4vw, 36px) + 37px)),
+    linear-gradient(90deg, transparent 0 calc(clamp(20px, 4vw, 36px) + 34px), rgba(217, 88, 77, 0.45) calc(clamp(20px, 4vw, 36px) + 35px), transparent calc(clamp(20px, 4vw, 36px) + 37px)),
     repeating-linear-gradient(180deg, transparent 0, transparent 33px, var(--rule) 33px, var(--rule) 34px);
   font-family: var(--neat);
   font-size: 19px;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Punch-hole spiral binding along left margin */
+body::before {
+  content: '';
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 26px;
+  pointer-events: none;
+  opacity: 0.7;
+  background-image: repeating-radial-gradient(circle at 13px 26px, rgba(25, 23, 18, 0.22) 0 7px, transparent 7.5px 8px);
+  background-size: 26px 74px;
 }
 
 /* Subtle paper texture */
@@ -70,12 +84,12 @@ h1, h2, h3, h4 {
   line-height: 1.05;
 }
 
-/* Typography utilities */
+/* Special Typewriter & Handwriting utilities */
 .font-hand { font-family: var(--hand); }
 .font-neat { font-family: var(--neat); }
 .font-type { font-family: var(--type); }
 
-/* Highlighter pen effect - vibrant energetic marker */
+/* Highlighter pen effect */
 .highlight-pen {
   background-image: linear-gradient(104deg, transparent 0.5%, var(--marker) 2.2%, var(--marker) 95.5%, transparent 98.5%);
   padding: 0 0.16em;
@@ -89,7 +103,7 @@ h1, h2, h3, h4 {
 }
 
 .highlight-pink {
-  background-image: linear-gradient(104deg, transparent 0.5%, var(--coral) 2.2%, var(--coral) 95.5%, transparent 98.5%);
+  background-image: linear-gradient(104deg, transparent 0.5%, var(--pink) 2.2%, var(--pink) 95.5%, transparent 98.5%);
   padding: 0 0.16em;
   border-radius: 0.25em;
 }
@@ -102,12 +116,12 @@ h1, h2, h3, h4 {
   gap: 8px;
   border: var(--ink-line);
   border-radius: var(--sketch);
-  padding: 8px 20px;
+  padding: 8px 18px;
   color: var(--paper) !important;
   background: var(--ink) !important;
   font-family: var(--hand) !important;
   font-weight: 700 !important;
-  font-size: 1.3rem !important;
+  font-size: 1.25rem !important;
   text-decoration: none !important;
   box-shadow: 4px 5px 0 var(--paper), 6px 7px 0 var(--ink);
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
@@ -131,12 +145,12 @@ h1, h2, h3, h4 {
   gap: 8px;
   border: var(--ink-line);
   border-radius: var(--sketch);
-  padding: 7px 18px;
+  padding: 7px 16px;
   color: var(--ink) !important;
   background: var(--paper) !important;
   font-family: var(--hand) !important;
   font-weight: 700 !important;
-  font-size: 1.2rem !important;
+  font-size: 1.15rem !important;
   box-shadow: 3px 4px 0 var(--paper-deep), 4px 5px 0 var(--ink);
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   cursor: pointer;
@@ -157,13 +171,13 @@ h1, h2, h3, h4 {
   background: var(--paper);
   border: var(--ink-line);
   border-radius: var(--sketch);
-  box-shadow: 4px 6px 0 rgba(25, 23, 18, 0.18);
+  box-shadow: 4px 6px 0 rgba(25, 23, 18, 0.15);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .notebook-card:hover {
   transform: translateY(-2px) rotate(-0.3deg);
-  box-shadow: 6px 9px 0 rgba(25, 23, 18, 0.25);
+  box-shadow: 6px 9px 0 rgba(25, 23, 18, 0.18);
 }
 
 /* Tape sticker across top of cards */
@@ -186,7 +200,7 @@ h1, h2, h3, h4 {
 .sticky-note {
   border: var(--ink-line);
   border-radius: var(--sketch-sm);
-  box-shadow: 4px 5px 0 rgba(25, 23, 18, 0.16);
+  box-shadow: 4px 5px 0 rgba(25, 23, 18, 0.14);
 }
 
 /* Stamp Badge */

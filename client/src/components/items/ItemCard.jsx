@@ -35,7 +35,7 @@ export default function ItemCard({ item, onClick }) {
       <div>
         {/* Top Header: Category and Status Stamp */}
         <div className="flex items-center justify-between gap-2 pt-1 pb-3 border-b-2 border-dashed border-[#191712]/20">
-          <div className="flex items-center gap-1.5 font-hand font-bold text-xl text-[#5d5744]">
+          <div className="flex items-center gap-1.5 font-hand font-bold text-lg text-[#5d5744]">
             <CategoryIcon className="w-4 h-4 text-[#191712]" />
             <span className="truncate max-w-[130px]">{item.category?.name || 'Item'}</span>
           </div>
@@ -46,15 +46,15 @@ export default function ItemCard({ item, onClick }) {
                 HANDED OVER
               </span>
             ) : item.status === 'CLAIM_PENDING' ? (
-              <span className="stamp-badge bg-[#ffd32a] text-[#191712]">
+              <span className="stamp-badge bg-[#ffe45e] text-[#191712]">
                 CLAIM PENDING
               </span>
             ) : isFound ? (
-              <span className="stamp-badge bg-[#2ed573] text-[#191712]">
+              <span className="stamp-badge bg-[#b8ecd0] text-[#191712]">
                 FOUND NOTICE
               </span>
             ) : (
-              <span className="stamp-badge bg-[#ff7979] text-[#191712] border-[#eb4d4b]">
+              <span className="stamp-badge bg-[#ffc9dc] text-[#d9584d] border-[#d9584d]">
                 LOST NOTICE
               </span>
             )}
@@ -78,28 +78,28 @@ export default function ItemCard({ item, onClick }) {
 
           {/* Custody pill */}
           {isFound && item.custodyType === 'AT_SECURITY_DESK' && (
-            <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-[#191712] text-[#ffd32a] text-[10px] font-type px-2 py-0.5 rounded-md border border-[#191712]">
-              <Shield className="w-3 h-3 text-[#ffd32a]" />
+            <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-[#191712] text-[#ffe45e] text-[10px] font-type px-2 py-0.5 rounded-md border border-[#191712]">
+              <Shield className="w-3 h-3 text-[#ffe45e]" />
               <span>Security Desk</span>
             </div>
           )}
         </div>
 
         {/* Title */}
-        <h3 className="font-hand font-bold text-3xl text-[#191712] line-clamp-1 group-hover:text-[#eb4d4b] transition-colors leading-snug">
+        <h3 className="font-hand font-bold text-2xl text-[#191712] line-clamp-1 group-hover:text-[#d9584d] transition-colors leading-snug">
           {item.title}
         </h3>
 
         {/* Description */}
-        <p className="font-neat text-lg text-[#5d5744] line-clamp-2 mt-1 leading-snug">
+        <p className="font-neat text-base text-[#5d5744] line-clamp-2 mt-1 leading-snug">
           {item.description}
         </p>
       </div>
 
       {/* Card Footer: Location & Date */}
-      <div className="mt-4 pt-3 border-t-2 border-dashed border-[#191712]/20 flex items-center justify-between font-type text-xs text-[#5d5744]">
+      <div className="mt-4 pt-3 border-t-2 border-dashed border-[#191712]/20 flex items-center justify-between font-type text-[11px] text-[#5d5744]">
         <div className="flex items-center gap-1 truncate max-w-[65%]" title={`${item.location?.buildingName} - ${item.location?.zoneFloor}`}>
-          <MapPin className="w-3.5 h-3.5 text-[#eb4d4b] shrink-0" />
+          <MapPin className="w-3.5 h-3.5 text-[#d9584d] shrink-0" />
           <span className="truncate">{item.location?.buildingName}</span>
         </div>
         <div className="flex items-center gap-1 shrink-0">

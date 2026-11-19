@@ -95,18 +95,18 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
           <div className="flex items-center gap-2">
             <span
               className={`stamp-badge ${
-                isFound ? 'bg-[#2ed573] text-[#191712]' : 'bg-[#ff7979] text-[#191712] border-[#eb4d4b]'
+                isFound ? 'bg-[#b8ecd0] text-[#191712]' : 'bg-[#ffc9dc] text-[#d9584d] border-[#d9584d]'
               }`}
             >
               {item.itemType} NOTICE
             </span>
-            <span className="font-hand font-bold text-2xl text-[#5d5744]">
+            <span className="font-hand font-bold text-xl text-[#5d5744]">
               · {item.category?.name}
             </span>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffd32a] transition-colors"
+            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
           >
             <X className="w-5 h-5 text-[#191712]" />
           </button>
@@ -129,7 +129,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
             <div className="flex flex-wrap items-center gap-3 mt-3 font-type text-xs text-[#5d5744]">
               <div className="flex items-center gap-1.5 bg-[#f2ead4] px-3 py-1 rounded-lg border border-[#191712]">
-                <MapPin className="w-3.5 h-3.5 text-[#eb4d4b]" />
+                <MapPin className="w-3.5 h-3.5 text-[#d9584d]" />
                 <span>{item.location?.buildingName} — {item.location?.zoneFloor}</span>
               </div>
               <div className="flex items-center gap-1.5 bg-[#f2ead4] px-3 py-1 rounded-lg border border-[#191712]">
@@ -157,7 +157,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
           {/* Description */}
           <div className="bg-[#f2ead4] rounded-2xl p-4 border-2 border-[#191712] shadow-[3px_3px_0_rgba(25,23,18,0.1)]">
-            <h4 className="font-type text-xs text-[#eb4d4b] uppercase tracking-wider mb-1 font-bold">
+            <h4 className="font-type text-xs text-[#d9584d] uppercase tracking-wider mb-1">
               [NOTICE DETAILS]
             </h4>
             <p className="font-neat text-xl text-[#191712] leading-relaxed whitespace-pre-wrap">
@@ -167,16 +167,16 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
           {/* Custody Info */}
           {isFound && (
-            <div className="p-4 rounded-2xl bg-[#70a1ff] border-2 border-[#191712] flex items-center justify-between shadow-[3px_3px_0_#191712]">
+            <div className="p-4 rounded-2xl bg-[#c2e5f7] border-2 border-[#191712] flex items-center justify-between shadow-[3px_3px_0_#191712]">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full border-2 border-[#191712] bg-[#ffd32a] flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-full border-2 border-[#191712] bg-[#ffe45e] flex items-center justify-center shrink-0">
                   <Shield className="w-5 h-5 text-[#191712]" />
                 </div>
                 <div>
                   <h4 className="font-hand font-bold text-2xl text-[#191712] leading-none">
                     Custody & Handover Station
                   </h4>
-                  <p className="font-neat text-lg text-[#191712] mt-0.5">
+                  <p className="font-neat text-base text-[#5d5744] mt-0.5">
                     {item.custodyType === 'AT_SECURITY_DESK'
                       ? 'Deposited at Central Campus Security Desk for safe custody.'
                       : 'Currently held with the finder on campus.'}
@@ -188,13 +188,13 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
           {/* Anti-Fraud Proof Question Notice */}
           {isFound && item.proofQuestion && (
-            <div className="p-4 rounded-2xl bg-[#ffd32a] border-2 border-[#191712] shadow-[3px_3px_0_#191712] transform -rotate-0.5">
-              <div className="flex items-center gap-2 text-[#191712] font-hand font-bold text-2xl mb-1">
-                <Shield className="w-5 h-5 text-[#eb4d4b]" />
+            <div className="p-4 rounded-2xl bg-[#ffe45e] border-2 border-[#191712] shadow-[3px_3px_0_#191712] transform -rotate-0.5">
+              <div className="flex items-center gap-2 text-[#191712] font-hand font-bold text-xl mb-1">
+                <Shield className="w-5 h-5 text-[#d9584d]" />
                 <span>Finder's Secret Verification Question:</span>
               </div>
-              <p className="font-hand font-bold text-3xl text-[#191712] italic">"{item.proofQuestion}"</p>
-              <p className="font-type text-xs text-[#191712] mt-1 font-bold">
+              <p className="font-hand font-bold text-2xl text-[#191712] italic">"{item.proofQuestion}"</p>
+              <p className="font-type text-[11px] text-[#5d5744] mt-1">
                 To claim this item, you must submit a claim answering this question accurately.
               </p>
             </div>
@@ -204,18 +204,18 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
           {(isOwner || isSecurity) && (
             <div className="border-t-2 border-dashed border-[#191712]/30 pt-5 space-y-4">
               <h3 className="font-hand font-bold text-3xl text-[#191712] flex items-center gap-2">
-                <Key className="w-6 h-6 text-[#eb4d4b]" />
+                <Key className="w-6 h-6 text-[#d9584d]" />
                 <span>Claims & Handover Verification</span>
               </h3>
 
               {otpMessage && (
-                <div className="p-3 bg-[#2ed573] border-2 border-[#191712] font-neat text-xl text-[#191712] rounded-xl shadow-[2px_2px_0_#191712]">
+                <div className="p-3 bg-[#b8ecd0] border-2 border-[#191712] font-neat text-lg text-[#191712] rounded-xl shadow-[2px_2px_0_#191712]">
                   {otpMessage}
                 </div>
               )}
 
               {otpError && (
-                <div className="p-3 bg-[#ff7979] border-2 border-[#191712] font-neat text-xl text-[#191712] rounded-xl shadow-[2px_2px_0_#191712]">
+                <div className="p-3 bg-[#ffc9dc] border-2 border-[#191712] font-neat text-lg text-[#d9584d] rounded-xl shadow-[2px_2px_0_#191712]">
                   {otpError}
                 </div>
               )}
@@ -224,7 +224,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
               {item.status !== 'RESOLVED' && (
                 <form onSubmit={handleVerifyOtp} className="p-4 rounded-2xl bg-[#f2ead4] border-2 border-[#191712] flex flex-col sm:flex-row items-center gap-3 shadow-[3px_3px_0_#191712]">
                   <div className="flex-1 w-full">
-                    <label className="block font-type text-xs text-[#5d5744] uppercase mb-1 font-bold">
+                    <label className="block font-type text-xs text-[#5d5744] uppercase mb-1">
                       In-Person Handover PIN (Claimant's 6-digit OTP):
                     </label>
                     <input
@@ -238,7 +238,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
                   </div>
                   <button
                     type="submit"
-                    className="sketch-button !text-2xl !py-2 sm:mt-auto"
+                    className="sketch-button !text-lg !py-2 sm:mt-auto"
                   >
                     Confirm Handover
                   </button>
@@ -247,26 +247,26 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
 
               {/* Received Claims List */}
               <div className="space-y-3">
-                <h4 className="font-type text-xs text-[#5d5744] uppercase font-bold">
+                <h4 className="font-type text-xs text-[#5d5744] uppercase">
                   Received Claims ({details?.claims?.length || 0})
                 </h4>
                 {details?.claims?.length === 0 ? (
-                  <p className="font-neat text-lg text-[#5d5744] italic">No claims filed yet.</p>
+                  <p className="font-neat text-base text-[#5d5744] italic">No claims filed yet.</p>
                 ) : (
                   details?.claims?.map((claim) => (
                     <div key={claim.id} className="p-4 rounded-2xl border-2 border-[#191712] bg-[#fbf6e6] shadow-[2px_3px_0_#191712] space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-hand font-bold text-3xl text-[#191712]">{claim.claimant?.fullName}</span>
-                        <span className="stamp-badge bg-[#ffd32a] text-[#191712]">
+                        <span className="font-hand font-bold text-2xl text-[#191712]">{claim.claimant?.fullName}</span>
+                        <span className="stamp-badge bg-[#ffe45e] text-[#191712]">
                           {claim.claimStatus}
                         </span>
                       </div>
 
                       <div className="bg-[#f2ead4] p-3 rounded-xl border border-[#191712]">
                         <p className="font-type text-xs text-[#5d5744]">Answer to Secret Question:</p>
-                        <p className="font-neat text-xl text-[#191712] mt-0.5">{claim.proofAnswer}</p>
+                        <p className="font-neat text-lg text-[#191712] mt-0.5">{claim.proofAnswer}</p>
                         {claim.additionalDetails && (
-                          <p className="font-neat text-base text-[#5d5744] mt-1 italic">Note: {claim.additionalDetails}</p>
+                          <p className="font-neat text-sm text-[#5d5744] mt-1 italic">Note: {claim.additionalDetails}</p>
                         )}
                       </div>
 
@@ -274,13 +274,13 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
                         <div className="flex items-center gap-2 pt-1">
                           <button
                             onClick={() => handleUpdateClaim(claim.id, 'APPROVED')}
-                            className="sketch-button !text-xl !py-1 !px-4"
+                            className="sketch-button !text-base !py-1 !px-3"
                           >
                             Approve & Generate OTP
                           </button>
                           <button
                             onClick={() => handleUpdateClaim(claim.id, 'REJECTED')}
-                            className="sketch-button-secondary !text-xl !py-1 !px-4"
+                            className="sketch-button-secondary !text-base !py-1 !px-3"
                           >
                             Reject
                           </button>
@@ -297,8 +297,8 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
           {matches.length > 0 && (
             <div className="border-t-2 border-dashed border-[#191712]/30 pt-5">
               <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-5 h-5 text-[#eb4d4b]" />
-                <h4 className="font-hand font-bold text-3xl text-[#191712]">
+                <Sparkles className="w-5 h-5 text-[#d9584d]" />
+                <h4 className="font-hand font-bold text-2xl text-[#191712]">
                   Possible Matching Belongings on Campus ({matches.length})
                 </h4>
               </div>
@@ -306,10 +306,10 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
                 {matches.map((m) => (
                   <div key={m.id} className="p-3 rounded-xl border-2 border-[#191712] bg-[#f2ead4] shadow-[2px_2px_0_#191712] flex items-center justify-between">
                     <div>
-                      <p className="font-hand font-bold text-2xl text-[#191712] line-clamp-1">{m.title}</p>
-                      <p className="font-type text-xs text-[#5d5744]">{m.location?.buildingName}</p>
+                      <p className="font-hand font-bold text-xl text-[#191712] line-clamp-1">{m.title}</p>
+                      <p className="font-type text-[10px] text-[#5d5744]">{m.location?.buildingName}</p>
                     </div>
-                    <span className="stamp-badge bg-[#ffd32a] text-[#191712]">
+                    <span className="stamp-badge bg-[#ffe45e] text-[#191712]">
                       {m.itemType}
                     </span>
                   </div>
@@ -332,7 +332,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
                 onOpenClaim(item);
               }}
               disabled={hasUserClaimed}
-              className="sketch-button !text-2xl !py-2.5 !px-5"
+              className="sketch-button !text-xl !py-2 !px-5"
             >
               {hasUserClaimed ? 'Claim Already Submitted' : 'Claim This Item'}
             </button>

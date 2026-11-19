@@ -13,13 +13,13 @@ const iconMap = {
   HelpCircle,
 };
 
-// Vibrant, energetic color pairs that pop
+// Pastel color pairs: [baseColor, hoverColor, textColor]
 const COLOR_PAIRS = [
-  { base: 'bg-[#ffd32a]', hover: 'hover:bg-[#ffa801]', active: 'bg-[#191712] text-[#ffd32a]' },
-  { base: 'bg-[#ff7979]', hover: 'hover:bg-[#ff5252]', active: 'bg-[#191712] text-[#ff7979]' },
-  { base: 'bg-[#2ed573]', hover: 'hover:bg-[#0be881]', active: 'bg-[#191712] text-[#2ed573]' },
-  { base: 'bg-[#70a1ff]', hover: 'hover:bg-[#4bcffa]', active: 'bg-[#191712] text-[#70a1ff]' },
-  { base: 'bg-[#c56cf0]', hover: 'hover:bg-[#a55eea]', active: 'bg-[#191712] text-[#c56cf0]' },
+  { base: 'bg-[#ffe45e]', hover: 'hover:bg-[#b8ecd0]', active: 'bg-[#191712] text-[#ffe45e]' },
+  { base: 'bg-[#ffc9dc]', hover: 'hover:bg-[#ffe45e]', active: 'bg-[#191712] text-[#ffc9dc]' },
+  { base: 'bg-[#b8ecd0]', hover: 'hover:bg-[#c2e5f7]', active: 'bg-[#191712] text-[#b8ecd0]' },
+  { base: 'bg-[#c2e5f7]', hover: 'hover:bg-[#ffc9dc]', active: 'bg-[#191712] text-[#c2e5f7]' },
+  { base: 'bg-[#ffeaa0]', hover: 'hover:bg-[#b8ecd0]', active: 'bg-[#191712] text-[#ffeaa0]' },
 ];
 
 export default function CategoryFilterBar({ categories, selectedCategory, onSelectCategory }) {
@@ -30,17 +30,16 @@ export default function CategoryFilterBar({ categories, selectedCategory, onSele
         {/* All Categories Chip */}
         <button
           onClick={() => onSelectCategory('')}
-          className={`shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-[180px_10px_160px_12px/12px_170px_10px_180px] border-2 border-[#191712] font-hand font-bold text-xl transition-all duration-200 cursor-pointer select-none shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] hover:-translate-y-0.5 ${
+          className={`shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-[180px_10px_160px_12px/12px_170px_10px_180px] border-2 border-[#191712] font-hand font-bold text-lg transition-all duration-200 cursor-pointer select-none shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] hover:-translate-y-0.5 ${
             selectedCategory === ''
-              ? 'bg-[#191712] text-[#ffd32a] scale-105'
-              : 'bg-[#fbf6e6] hover:bg-[#ffd32a] text-[#191712]'
+              ? 'bg-[#191712] text-[#ffe45e] scale-105'
+              : 'bg-[#fbf6e6] hover:bg-[#ffe45e] text-[#191712]'
           }`}
         >
-          <Layers className="w-5 h-5 shrink-0" />
-          <span>All Categories</span>
+          <span>🏷️ All Categories</span>
         </button>
 
-        {/* Dynamic Category Chips with Vibrant Colors */}
+        {/* Dynamic Category Chips with Hover Color Transitions */}
         {categories.map((cat, idx) => {
           const Icon = iconMap[cat.iconName] || HelpCircle;
           const isSelected = String(selectedCategory) === String(cat.id);
@@ -50,7 +49,7 @@ export default function CategoryFilterBar({ categories, selectedCategory, onSele
             <button
               key={cat.id}
               onClick={() => onSelectCategory(isSelected ? '' : cat.id)}
-              className={`shrink-0 flex items-center gap-2 px-4 py-2 rounded-[180px_10px_160px_12px/12px_170px_10px_180px] border-2 border-[#191712] font-hand font-bold text-xl transition-all duration-200 cursor-pointer select-none shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] hover:-translate-y-0.5 ${
+              className={`shrink-0 flex items-center gap-2 px-3.5 py-1.5 rounded-[180px_10px_160px_12px/12px_170px_10px_180px] border-2 border-[#191712] font-hand font-bold text-lg transition-all duration-200 cursor-pointer select-none shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] hover:-translate-y-0.5 ${
                 isSelected
                   ? colorPair.active + ' scale-105 transform -rotate-1'
                   : colorPair.base + ' ' + colorPair.hover + ' text-[#191712]'

@@ -43,11 +43,11 @@ export default function ActivityModal({ isOpen, onClose }) {
   const getActionBadge = (action) => {
     switch (action) {
       case 'USER_LOGIN':
-        return <span className="stamp-badge bg-[#2ed573] text-[#191712]">LOGGED IN</span>;
+        return <span className="stamp-badge bg-[#b8ecd0] text-[#191712]">LOGGED IN</span>;
       case 'USER_REGISTER':
-        return <span className="stamp-badge bg-[#70a1ff] text-[#191712]">REGISTERED</span>;
+        return <span className="stamp-badge bg-[#c2e5f7] text-[#191712]">REGISTERED</span>;
       case 'ITEM_HANDOVER_VERIFIED':
-        return <span className="stamp-badge bg-[#ffd32a] text-[#191712]">HANDOVER VERIFIED</span>;
+        return <span className="stamp-badge bg-[#ffe45e] text-[#191712]">HANDOVER VERIFIED</span>;
       default:
         return <span className="stamp-badge bg-[#f2ead4] text-[#191712]">{action}</span>;
     }
@@ -62,12 +62,12 @@ export default function ActivityModal({ isOpen, onClose }) {
         {/* Header */}
         <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border-2 border-[#191712] bg-[#ffd32a] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full border-2 border-[#191712] bg-[#ffe45e] flex items-center justify-center">
               <BookOpen className="w-5 h-5 text-[#191712]" />
             </div>
             <div>
               <h2 className="font-hand font-bold text-3xl text-[#191712]">Campus Registry Logbook</h2>
-              <p className="font-type text-[11px] text-[#eb4d4b] uppercase tracking-wider font-bold">
+              <p className="font-type text-[11px] text-[#d9584d] uppercase tracking-wider">
                 [LIVE AUDIT TRAIL OF LOGINS & VERIFICATIONS]
               </p>
             </div>
@@ -76,13 +76,13 @@ export default function ActivityModal({ isOpen, onClose }) {
             <button
               onClick={fetchLogs}
               title="Refresh Logs"
-              className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffd32a] transition-colors"
+              className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
             >
               <RefreshCw className="w-4 h-4 text-[#191712]" />
             </button>
             <button
               onClick={onClose}
-              className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffd32a] transition-colors"
+              className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
             >
               <X className="w-5 h-5 text-[#191712]" />
             </button>
@@ -97,17 +97,17 @@ export default function ActivityModal({ isOpen, onClose }) {
               Reading registry entries...
             </div>
           ) : logs.length === 0 ? (
-            <div className="py-16 text-center font-neat text-xl text-[#5d5744] italic">
+            <div className="py-16 text-center font-neat text-lg text-[#5d5744] italic">
               No registry activity recorded yet.
             </div>
           ) : (
             logs.map((log) => (
               <div
                 key={log.id}
-                className="p-3.5 rounded-2xl border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffd32a]/30 transition-colors flex items-center justify-between gap-3 shadow-[2px_2px_0_#191712]"
+                className="p-3.5 rounded-2xl border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e]/30 transition-colors flex items-center justify-between gap-3 shadow-[2px_2px_0_#191712]"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full border-2 border-[#191712] bg-[#ffd32a] text-[#191712] flex items-center justify-center font-hand font-bold text-lg shrink-0">
+                  <div className="w-9 h-9 rounded-full border-2 border-[#191712] bg-[#ffe45e] text-[#191712] flex items-center justify-center font-hand font-bold text-lg shrink-0">
                     {log.user?.fullName ? log.user.fullName[0].toUpperCase() : 'U'}
                   </div>
                   <div>
@@ -140,7 +140,7 @@ export default function ActivityModal({ isOpen, onClose }) {
         {/* Footer */}
         <div className="px-6 py-3 border-t-2 border-[#191712] bg-[#f2ead4] font-type text-xs text-[#5d5744] flex items-center justify-between">
           <span>ENTRIES: <strong>{logs.length}</strong></span>
-          <span className="text-[#eb4d4b] font-bold">[AUDITED IN POSTGRESQL]</span>
+          <span className="text-[#d9584d]">[AUDITED IN POSTGRESQL]</span>
         </div>
       </div>
     </div>

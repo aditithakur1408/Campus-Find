@@ -14,12 +14,12 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
             className="flex items-center gap-2.5 cursor-pointer group select-none" 
             onClick={() => setActiveTab('ALL')}
           >
-            <div className="w-10 h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffd32a] hover:bg-[#2ed573] flex items-center justify-center font-hand font-bold text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712]">
+            <div className="w-10 h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] hover:bg-[#b8ecd0] flex items-center justify-center font-hand font-bold text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712]">
               CF
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-hand font-bold text-3xl sm:text-4xl text-[#191712] tracking-tight">
-                Campus<span className="underline decoration-wavy decoration-[#eb4d4b] decoration-2">Find</span>
+                Campus<span className="underline decoration-wavy decoration-[#d9584d] decoration-2">Find</span>
               </span>
             </div>
           </div>
@@ -36,7 +36,7 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
                 onClick={() => setActiveTab(tab.id)}
                 className={`font-hand font-bold text-xl px-3.5 py-1 rounded-lg border-b-2 transition-all ${
                   activeTab === tab.id
-                    ? 'border-[#eb4d4b] text-[#191712] bg-[#ffd32a]/60 shadow-[1px_2px_0_#191712]'
+                    ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e]/50'
                     : 'border-transparent text-[#5d5744] hover:text-[#191712] hover:bg-[#f2ead4]'
                 }`}
               >
@@ -53,7 +53,7 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
               title="View Who Logged In & Registry Activity"
               className="sketch-button-secondary text-sm !py-1.5 !px-3"
             >
-              <Activity className="w-4 h-4 text-[#eb4d4b]" />
+              <Activity className="w-4 h-4 text-[#d9584d]" />
               <span className="hidden sm:inline">Logbook</span>
             </button>
 
@@ -70,7 +70,7 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
             {user ? (
               <div className="flex items-center gap-2 pl-2 border-l-2 border-dashed border-[#191712]/30">
                 <div className="flex items-center gap-2 bg-[#f2ead4] px-3 py-1 rounded-xl border-2 border-[#191712] shadow-[2px_2px_0_#191712]">
-                  <div className="w-6 h-6 rounded-full bg-[#ffd32a] border border-[#191712] text-[#191712] flex items-center justify-center font-hand font-bold text-xs">
+                  <div className="w-6 h-6 rounded-full bg-[#ffe45e] border border-[#191712] text-[#191712] flex items-center justify-center font-hand font-bold text-xs">
                     {user.fullName ? user.fullName[0].toUpperCase() : 'U'}
                   </div>
                   <span className="font-hand font-bold text-base text-[#191712] hidden lg:inline">
@@ -80,7 +80,7 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
                 <button
                   onClick={logout}
                   title="Logout"
-                  className="p-1.5 text-[#5d5744] hover:text-[#eb4d4b] transition-colors"
+                  className="p-1.5 text-[#5d5744] hover:text-[#d9584d] transition-colors"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
