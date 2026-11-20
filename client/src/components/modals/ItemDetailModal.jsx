@@ -275,14 +275,16 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
               </h3>
 
               {otpMessage && (
-                <div className="p-3 bg-[#b8ecd0] border-2 border-[#191712] font-neat text-lg text-[#191712] rounded-xl shadow-[2px_2px_0_#191712]">
-                  {otpMessage}
+                <div className="p-3 bg-[#b8ecd0] border-2 border-[#191712] font-neat text-lg text-[#191712] rounded-xl shadow-[2px_2px_0_#191712] flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-[#2f6f46] shrink-0" />
+                  <span>{otpMessage}</span>
                 </div>
               )}
 
               {otpError && (
-                <div className="p-3 bg-[#ffc9dc] border-2 border-[#191712] font-neat text-lg text-[#d9584d] rounded-xl shadow-[2px_2px_0_#191712]">
-                  {otpError}
+                <div className="p-3 bg-[#ffc9dc] border-2 border-[#191712] font-neat text-lg text-[#d9584d] rounded-xl shadow-[2px_2px_0_#191712] flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-[#d9584d] shrink-0" />
+                  <span>{otpError}</span>
                 </div>
               )}
 

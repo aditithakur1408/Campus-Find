@@ -2,6 +2,12 @@ const crypto = require('crypto');
 const prisma = require('../config/db');
 const { successResponse, errorResponse } = require('../utils/response');
 
+// Security: In-memory sliding rate-limiter for Handover OTP attempts
+// Map: itemId -> { count: number, lockedUntil: number | null }
+const otpAttemptsMap = new Map();
+const MAX_OTP_ATTEMPTS = 5;
+const LOCKOUT_DURATION_MS = 15 * 60 * 1000; // 15-minute security lockout
+
 const submitClaim = async (req, res) => {
   try {
     const { itemId } = req.params;
@@ -144,6 +150,9 @@ const updateClaimStatus = async (req, res) => {
     let otpHash = null;
 
     if (status === 'APPROVED') {
+      // Clear any prior security lockouts on new OTP generation
+      otpAttemptsMap.delete(claim.itemId);
+
       // Generate a 6-digit secure handover OTP
       rawOtp = Math.floor(100000 + Math.random() * 900000).toString();
       otpHash = crypto.createHash('sha256').update(rawOtp).digest('hex');
@@ -219,11 +228,58 @@ const verifyHandoverOtp = async (req, res) => {
       return errorResponse(res, 'No handover OTP has been generated for this item yet.', 400);
     }
 
+    // Check if verification is currently locked due to exceeded failed attempts
+    const attemptRecord = otpAttemptsMap.get(itemId);
+    if (attemptRecord && attemptRecord.lockedUntil && attemptRecord.lockedUntil > Date.now()) {
+      const remainingMinutes = Math.ceil((attemptRecord.lockedUntil - Date.now()) / 60000);
+      return errorResponse(
+        res,
+        `Too many failed attempts. Handover verification is locked for ${remainingMinutes} more minute(s) to protect against fraud.`,
+        429
+      );
+    }
+
     const inputHash = crypto.createHash('sha256').update(otp.toString().trim()).digest('hex');
 
     if (inputHash !== item.handoverOtpHash) {
-      return errorResponse(res, 'Incorrect verification code. Please check with claimant.', 400);
+      const currentFailed = (attemptRecord ? attemptRecord.count : 0) + 1;
+      if (currentFailed >= MAX_OTP_ATTEMPTS) {
+        otpAttemptsMap.set(itemId, {
+          count: currentFailed,
+          lockedUntil: Date.now() + LOCKOUT_DURATION_MS,
+        });
+
+        await prisma.auditLog.create({
+          data: {
+            itemId,
+            performedBy: req.user.id,
+            action: 'OTP_VERIFICATION_LOCKED',
+            metadata: { attempts: currentFailed, reason: 'Exceeded maximum allowable attempts' },
+          },
+        }).catch(() => {});
+
+        return errorResponse(
+          res,
+          'Too many failed attempts. Verification locked for 15 minutes for anti-fraud protection.',
+          429
+        );
+      }
+
+      otpAttemptsMap.set(itemId, {
+        count: currentFailed,
+        lockedUntil: null,
+      });
+
+      const attemptsRemaining = MAX_OTP_ATTEMPTS - currentFailed;
+      return errorResponse(
+        res,
+        `Incorrect verification code. ${attemptsRemaining} attempt(s) remaining before security lockout.`,
+        400
+      );
     }
+
+    // Verification successful: clear rate-limiting history for this item
+    otpAttemptsMap.delete(itemId);
 
     // Mark item as RESOLVED and claim as COMPLETED
     const [updatedItem] = await prisma.$transaction([
