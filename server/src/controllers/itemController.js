@@ -8,6 +8,7 @@ const getItems = async (req, res) => {
       status, // 'OPEN', 'CLAIM_PENDING', 'RESOLVED'
       categoryId,
       locationId,
+      userId,
       search,
       page = 1,
       limit = 12,
@@ -19,14 +20,18 @@ const getItems = async (req, res) => {
 
     const where = {};
 
+    if (userId) {
+      where.userId = userId;
+    }
+
     if (type) {
       where.itemType = type.toUpperCase();
     }
 
     if (status) {
       where.status = status.toUpperCase();
-    } else {
-      // By default show active items first unless specified
+    } else if (!userId) {
+      // By default show active items first unless specified or viewing own notices
       where.status = { not: 'EXPIRED' };
     }
 

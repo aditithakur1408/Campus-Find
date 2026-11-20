@@ -20,6 +20,7 @@ export default function HomePage({
   setSelectedLocation,
   filterMode,
   setFilterMode,
+  activeTab = 'ALL',
   onSearchSubmit,
   onCardClick,
   onOpenReport,
@@ -94,10 +95,16 @@ export default function HomePage({
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
               <div className="flex items-center gap-2 font-type text-xs text-[#d9584d] uppercase tracking-wider">
-                <span>[2] THE LIVE PINBOARD</span>
+                <span>[2] {activeTab === 'MY_NOTICES' ? 'YOUR PERSONAL NOTICES' : 'THE LIVE PINBOARD'}</span>
               </div>
               <h2 className="font-hand font-bold text-4xl text-[#191712] mt-1">
-                Browse Campus Notices
+                {activeTab === 'MY_NOTICES'
+                  ? 'Your Pinned Notices'
+                  : activeTab === 'LOST'
+                  ? 'Lost Belongings Feed'
+                  : activeTab === 'FOUND'
+                  ? 'Found Belongings Feed'
+                  : 'Browse Campus Notices'}
               </h2>
             </div>
 
@@ -214,9 +221,13 @@ export default function HomePage({
               <div className="w-16 h-16 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] text-[#191712] flex items-center justify-center mx-auto mb-4 animate-pin shadow-[3px_3px_0_#191712]">
                 <Pin className="w-8 h-8" />
               </div>
-              <h3 className="font-hand font-bold text-4xl text-[#191712]">No notices pinned here yet</h3>
+              <h3 className="font-hand font-bold text-4xl text-[#191712]">
+                {activeTab === 'MY_NOTICES' ? "You haven't pinned any notices yet" : 'No notices pinned here yet'}
+              </h3>
               <p className="font-neat text-xl text-[#5d5744] mt-2 max-w-sm mx-auto leading-relaxed">
-                Did you lose or find something? Pin the first notice to help your fellow students recover it.
+                {activeTab === 'MY_NOTICES'
+                  ? "Report lost items or items you've spotted on campus to track them all in one place."
+                  : 'Did you lose or find something? Pin the first notice to help your fellow students recover it.'}
               </p>
               <button
                 onClick={onOpenReport}

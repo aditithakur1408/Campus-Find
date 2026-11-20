@@ -38,6 +38,7 @@ export default function Navbar({
               { id: 'ALL', label: 'All Notices' },
               { id: 'LOST', label: 'Lost Belongings' },
               { id: 'FOUND', label: 'Found Belongings' },
+              ...(user ? [{ id: 'MY_NOTICES', label: 'My Notices' }] : []),
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -120,6 +121,28 @@ export default function Navbar({
               </button>
             )}
           </div>
+        </div>
+
+        {/* Mobile Navigation Tabs */}
+        <div className="flex md:hidden items-center gap-1.5 pb-2 overflow-x-auto scrollbar-none pt-1 border-t border-dashed border-[#191712]/20">
+          {[
+            { id: 'ALL', label: 'All' },
+            { id: 'LOST', label: 'Lost' },
+            { id: 'FOUND', label: 'Found' },
+            ...(user ? [{ id: 'MY_NOTICES', label: 'My Notices' }] : []),
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`shrink-0 font-hand font-bold text-base px-2.5 py-0.5 rounded-lg border transition-all cursor-pointer ${
+                activeTab === tab.id
+                  ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e]'
+                  : 'border-transparent text-[#5d5744] hover:bg-[#f2ead4]'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
     </header>

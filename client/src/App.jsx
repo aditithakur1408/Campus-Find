@@ -50,7 +50,7 @@ export default function App() {
 
   useEffect(() => {
     fetchItems();
-  }, [activeTab, selectedCategory, selectedLocation]);
+  }, [activeTab, selectedCategory, selectedLocation, user]);
 
   const showToast = (msg) => {
     setToastMessage(msg);
@@ -111,7 +111,11 @@ export default function App() {
     try {
       setLoading(true);
       const params = {};
-      if (activeTab !== 'ALL') params.type = activeTab;
+      if (activeTab === 'MY_NOTICES' && user) {
+        params.userId = user.id;
+      } else if (activeTab !== 'ALL') {
+        params.type = activeTab;
+      }
       if (selectedCategory) params.categoryId = selectedCategory;
       if (selectedLocation) params.locationId = selectedLocation;
       if (searchQuery.trim()) params.search = searchQuery.trim();
@@ -195,6 +199,7 @@ export default function App() {
                 setSelectedLocation={setSelectedLocation}
                 filterMode={filterMode}
                 setFilterMode={setFilterMode}
+                activeTab={activeTab}
                 onSearchSubmit={handleSearchSubmit}
                 onCardClick={handleCardClick}
                 onOpenReport={handleOpenReport}
