@@ -1,8 +1,16 @@
 import React from 'react';
-import { Compass, PlusCircle, Activity, User, LogOut } from 'lucide-react';
+import { Compass, PlusCircle, Activity, User, LogOut, Bell } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
-export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activeTab, setActiveTab }) {
+export default function Navbar({
+  onOpenAuth,
+  onOpenReport,
+  onOpenActivity,
+  onOpenNotifications,
+  unreadCount = 0,
+  activeTab,
+  setActiveTab,
+}) {
   const { user, logout } = useAuth();
 
   return (
@@ -56,6 +64,23 @@ export default function Navbar({ onOpenAuth, onOpenReport, onOpenActivity, activ
               <Activity className="w-4 h-4 text-[#d9584d]" />
               <span className="hidden sm:inline">Logbook</span>
             </button>
+
+            {/* Notification Inbox Button for logged-in users */}
+            {user && (
+              <button
+                onClick={onOpenNotifications}
+                title="View Handover Codes & Notice Updates"
+                className="sketch-button-secondary text-sm !py-1.5 !px-3 relative"
+              >
+                <Bell className="w-4 h-4 text-[#d9584d]" />
+                <span className="hidden sm:inline">Inbox</span>
+                {unreadCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 bg-[#d9584d] text-[#fbf6e6] text-[10px] font-type font-bold px-1.5 py-0.5 rounded-full border border-[#191712] leading-none">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </span>
+                )}
+              </button>
+            )}
 
             {/* Report Item CTA */}
             <button

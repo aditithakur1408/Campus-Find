@@ -91,8 +91,9 @@ const getNotifications = async (req, res) => {
 const markNotificationRead = async (req, res) => {
   try {
     const { id } = req.params;
+    const where = id === 'all' ? { userId: req.user.id } : { id, userId: req.user.id };
     await prisma.notification.updateMany({
-      where: { id, userId: req.user.id },
+      where,
       data: { isRead: true },
     });
     return successResponse(res, 'Notification marked as read.');

@@ -11,6 +11,7 @@ import ReportModal from './components/modals/ReportModal';
 import ItemDetailModal from './components/modals/ItemDetailModal';
 import ClaimModal from './components/modals/ClaimModal';
 import ActivityModal from './components/modals/ActivityModal';
+import NotificationModal from './components/modals/NotificationModal';
 
 export default function App() {
   const { user } = useAuth();
@@ -33,6 +34,8 @@ export default function App() {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [claimModalOpen, setClaimModalOpen] = useState(false);
   const [activityModalOpen, setActivityModalOpen] = useState(false);
+  const [notificationModalOpen, setNotificationModalOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const [selectedItem, setSelectedItem] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
 
@@ -42,12 +45,44 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    fetchUnreadCount();
+  }, [user]);
+
+  useEffect(() => {
     fetchItems();
   }, [activeTab, selectedCategory, selectedLocation]);
 
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 4000);
+  };
+
+  const fetchUnreadCount = async () => {
+    if (!user) {
+      setUnreadCount(0);
+      return;
+    }
+    try {
+      const res = await api.get('/meta/notifications');
+      if (res.data?.data) {
+        const unread = res.data.data.filter((n) => !n.isRead).length;
+        setUnreadCount(unread);
+      }
+    } catch (e) {
+      // silently ignore
+    }
+  };
+
+  const handleOpenItemById = async (id) => {
+    try {
+      const res = await api.get(`/items/${id}`);
+      if (res.data?.data) {
+        setSelectedItem(res.data.data);
+        setDetailModalOpen(true);
+      }
+    } catch (e) {
+      console.error('Error fetching item by id:', e);
+    }
   };
 
   const fetchMeta = async () => {
@@ -135,6 +170,8 @@ export default function App() {
           onOpenAuth={() => setAuthModalOpen(true)}
           onOpenReport={handleOpenReport}
           onOpenActivity={() => setActivityModalOpen(true)}
+          onOpenNotifications={() => setNotificationModalOpen(true)}
+          unreadCount={unreadCount}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
@@ -216,6 +253,16 @@ export default function App() {
         <ActivityModal
           isOpen={activityModalOpen}
           onClose={() => setActivityModalOpen(false)}
+        />
+
+        <NotificationModal
+          isOpen={notificationModalOpen}
+          onClose={() => {
+            setNotificationModalOpen(false);
+            fetchUnreadCount();
+          }}
+          onRefreshUnread={fetchUnreadCount}
+          onOpenItemById={handleOpenItemById}
         />
       </div>
     </Router>
