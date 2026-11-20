@@ -67,7 +67,7 @@ export default function HomePage({
                 placeholder="Search lost IDs, laptops, keys, wallets, calculators..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent font-neat text-xl text-[#191712] placeholder-[#5d5744]/60 focus:outline-none"
+                className="w-full bg-transparent font-sans text-base sm:text-lg text-[#191712] placeholder-[#5d5744]/60 focus:outline-none"
               />
             </div>
             <button

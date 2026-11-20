@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Special+Elite&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -20,6 +20,7 @@
   --hand: 'Caveat', cursive;
   --neat: 'Patrick Hand', cursive;
   --type: 'Special Elite', monospace;
+  --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --sketch: 255px 14px 225px 16px / 16px 225px 14px 255px;
   --sketch-sm: 180px 10px 160px 12px / 12px 170px 10px 180px;
   --ink-line: 2.5px solid var(--ink);
@@ -88,6 +89,7 @@ h1, h2, h3, h4 {
 .font-hand { font-family: var(--hand); }
 .font-neat { font-family: var(--neat); }
 .font-type { font-family: var(--type); }
+.font-sans { font-family: var(--sans); }
 
 /* Highlighter pen effect */
 .highlight-pen {
@@ -222,9 +224,20 @@ h1, h2, h3, h4 {
   border-top: 2px dashed rgba(25, 23, 18, 0.32);
 }
 
-/* Input Fields inside Notebook */
+/* Input Fields inside Notebook - Crisp, legible typography for input precision */
 input, textarea, select {
-  font-family: var(--neat);
+  font-family: var(--sans);
+  letter-spacing: -0.01em;
+}
+
+input::placeholder, textarea::placeholder {
+  font-family: var(--sans);
+  opacity: 0.6;
+}
+
+/* Monospace inputs like Handover OTP and Typewriter fields */
+input.font-type, textarea.font-type {
+  font-family: var(--type) !important;
 }
 
 input:focus, textarea:focus, select:focus {
