@@ -38,13 +38,13 @@ export default function AuthModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-md w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
+      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-md w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden my-auto max-h-[90vh] flex flex-col">
         {/* Masking Tape */}
         <div className="tape-sticker" />
 
         {/* Header */}
-        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between">
+        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between shrink-0 bg-[#fbf6e6]">
           <div>
             <h2 className="font-hand font-bold text-3xl text-[#191712]">
               {isRegister ? 'Student Registration' : 'Student & Staff Sign In'}
@@ -54,19 +54,21 @@ export default function AuthModal({ isOpen, onClose }) {
             </p>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
+            title="Close modal"
+            className="p-1.5 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors cursor-pointer shrink-0"
           >
             <X className="w-5 h-5 text-[#191712]" />
           </button>
         </div>
 
         {/* Tab switch */}
-        <div className="flex border-b-2 border-[#191712] bg-[#f2ead4]">
+        <div className="flex border-b-2 border-[#191712] bg-[#f2ead4] shrink-0">
           <button
             type="button"
             onClick={() => { setIsRegister(false); setError(null); }}
-            className={`flex-1 py-2 font-hand font-bold text-xl transition-all ${
+            className={`flex-1 py-2 font-hand font-bold text-xl transition-all cursor-pointer ${
               !isRegister
                 ? 'bg-[#fbf6e6] text-[#191712] border-b-2 border-[#d9584d]'
                 : 'text-[#5d5744] hover:text-[#191712]'
@@ -77,7 +79,7 @@ export default function AuthModal({ isOpen, onClose }) {
           <button
             type="button"
             onClick={() => { setIsRegister(true); setError(null); }}
-            className={`flex-1 py-2 font-hand font-bold text-xl transition-all ${
+            className={`flex-1 py-2 font-hand font-bold text-xl transition-all cursor-pointer ${
               isRegister
                 ? 'bg-[#fbf6e6] text-[#191712] border-b-2 border-[#d9584d]'
                 : 'text-[#5d5744] hover:text-[#191712]'
@@ -86,6 +88,8 @@ export default function AuthModal({ isOpen, onClose }) {
             New Student Register
           </button>
         </div>
+
+        <div className="overflow-y-auto flex-1">
 
         {/* Error Alert */}
         {error && (
@@ -201,6 +205,7 @@ export default function AuthModal({ isOpen, onClose }) {
             </button>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );

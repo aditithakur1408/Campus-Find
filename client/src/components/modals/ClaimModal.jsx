@@ -33,13 +33,13 @@ export default function ClaimModal({ isOpen, onClose, item, onClaimSubmitted }) 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-lg w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
+      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-lg w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden my-auto max-h-[90vh] flex flex-col">
         {/* Masking Tape */}
         <div className="tape-sticker" />
 
         {/* Header */}
-        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between">
+        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between shrink-0 bg-[#fbf6e6]">
           <div>
             <h2 className="font-hand font-bold text-3xl text-[#191712]">Submit Ownership Proof</h2>
             <p className="font-type text-[11px] text-[#d9584d] uppercase tracking-wider">
@@ -47,21 +47,24 @@ export default function ClaimModal({ isOpen, onClose, item, onClaimSubmitted }) 
             </p>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
+            title="Close modal"
+            className="p-1.5 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors cursor-pointer shrink-0"
           >
             <X className="w-5 h-5 text-[#191712]" />
           </button>
         </div>
 
-        {error && (
-          <div className="mx-6 mt-4 p-3 rounded-xl bg-[#ffc9dc] border-2 border-[#191712] font-neat text-base text-[#191712] flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 text-[#d9584d] shrink-0" />
-            <span>{error}</span>
-          </div>
-        )}
+        <div className="overflow-y-auto flex-1">
+          {error && (
+            <div className="mx-6 mt-4 p-3 rounded-xl bg-[#ffc9dc] border-2 border-[#191712] font-neat text-base text-[#191712] flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-[#d9584d] shrink-0" />
+              <span>{error}</span>
+            </div>
+          )}
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+          <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {/* Question Prompt */}
           {item.proofQuestion ? (
             <div className="p-4 rounded-2xl bg-[#ffe45e] border-2 border-[#191712] shadow-[3px_3px_0_#191712]">
@@ -112,6 +115,7 @@ export default function ClaimModal({ isOpen, onClose, item, onClaimSubmitted }) 
             </button>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );

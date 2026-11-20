@@ -72,12 +72,12 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
-      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-xl w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden my-8">
+      <div className="relative bg-[#fbf6e6] rounded-[255px_14px_225px_16px/16px_225px_14px_255px] max-w-xl w-full border-[2.5px] border-[#191712] shadow-[6px_8px_0_#191712] overflow-hidden my-auto max-h-[90vh] flex flex-col">
         {/* Masking Tape */}
         <div className="tape-sticker" />
 
-        {/* Header */}
-        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between">
+        {/* Header - Fixed & Always Visible */}
+        <div className="px-6 pt-7 pb-3 border-b-2 border-dashed border-[#191712]/30 flex items-center justify-between shrink-0 bg-[#fbf6e6]">
           <div>
             <h2 className="font-hand font-bold text-3xl text-[#191712]">Pin a New Campus Notice</h2>
             <p className="font-type text-[11px] text-[#d9584d] uppercase tracking-wider">
@@ -85,14 +85,18 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
             </p>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-1 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors"
+            title="Close modal"
+            className="p-1.5 rounded-lg border-2 border-[#191712] bg-[#f2ead4] hover:bg-[#ffe45e] transition-colors cursor-pointer shrink-0"
           >
             <X className="w-5 h-5 text-[#191712]" />
           </button>
         </div>
 
-        {/* Item Type Switcher */}
+        {/* Scrollable Form Body */}
+        <div className="overflow-y-auto flex-1">
+          {/* Item Type Switcher */}
         <div className="p-6 pb-2">
           <div className="grid grid-cols-2 gap-3 p-1.5 bg-[#f2ead4] rounded-2xl border-2 border-[#191712]">
             <button
@@ -305,6 +309,7 @@ export default function ReportModal({ isOpen, onClose, categories, locations, on
             </button>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );
