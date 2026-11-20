@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Activity, Clock, RefreshCw, BookOpen } from 'lucide-react';
+import { X, Activity, Clock, RefreshCw, BookOpen, Shield } from 'lucide-react';
 import api from '../../services/api';
 
 export default function ActivityModal({ isOpen, onClose }) {
@@ -68,7 +68,7 @@ export default function ActivityModal({ isOpen, onClose }) {
             <div>
               <h2 className="font-hand font-bold text-3xl text-[#191712]">Campus Registry Logbook</h2>
               <p className="font-type text-[11px] text-[#d9584d] uppercase tracking-wider">
-                [LIVE AUDIT TRAIL OF LOGINS & VERIFICATIONS]
+                [LIVE AUDIT TRAIL · CONTACT PRIVACY SHIELDED]
               </p>
             </div>
           </div>
@@ -119,8 +119,9 @@ export default function ActivityModal({ isOpen, onClose }) {
                         {log.user?.role}
                       </span>
                     </div>
-                    <p className="font-type text-xs text-[#5d5744] mt-0.5">
-                      {log.user?.email}
+                    <p className="font-type text-xs text-[#5d5744] mt-0.5 flex items-center gap-1">
+                      <Shield className="w-3 h-3 text-[#2f6f46]" />
+                      <span>{log.user?.email || 'Confidential Student'}</span>
                     </p>
                   </div>
                 </div>
@@ -140,7 +141,7 @@ export default function ActivityModal({ isOpen, onClose }) {
         {/* Footer */}
         <div className="px-6 py-3 border-t-2 border-[#191712] bg-[#f2ead4] font-type text-xs text-[#5d5744] flex items-center justify-between">
           <span>ENTRIES: <strong>{logs.length}</strong></span>
-          <span className="text-[#d9584d]">[AUDITED IN POSTGRESQL]</span>
+          <span className="text-[#d9584d]">[PRIVACY SHIELDED · AUDITED IN POSTGRESQL]</span>
         </div>
       </div>
     </div>

@@ -54,6 +54,17 @@ const getStats = async (req, res) => {
   }
 };
 
+const maskEmail = (email) => {
+  if (!email || typeof email !== 'string') return '';
+  const parts = email.split('@');
+  if (parts.length !== 2) return email;
+  const [local, domain] = parts;
+  if (local.length <= 1) {
+    return `${local}***@${domain}`;
+  }
+  return `${local[0]}***@${domain}`;
+};
+
 const getActivityLogs = async (req, res) => {
   try {
     const logs = await prisma.auditLog.findMany({
@@ -61,12 +72,38 @@ const getActivityLogs = async (req, res) => {
       take: 50,
       include: {
         user: {
-          select: { id: true, fullName: true, email: true, role: true, studentId: true },
+          select: { id: true, fullName: true, email: true, role: true },
         },
       },
     });
 
-    return successResponse(res, 'Activity logs retrieved.', logs);
+    const sanitizedLogs = logs.map((log) => {
+      let sanitizedMetadata = null;
+      if (log.metadata && typeof log.metadata === 'object') {
+        sanitizedMetadata = { ...log.metadata };
+        if (sanitizedMetadata.email) {
+          sanitizedMetadata.email = maskEmail(sanitizedMetadata.email);
+        }
+        delete sanitizedMetadata.ip;
+      }
+
+      return {
+        id: log.id,
+        action: log.action,
+        createdAt: log.createdAt,
+        user: log.user
+          ? {
+              id: log.user.id,
+              fullName: log.user.fullName,
+              email: maskEmail(log.user.email),
+              role: log.user.role,
+            }
+          : null,
+        metadata: sanitizedMetadata,
+      };
+    });
+
+    return successResponse(res, 'Activity logs retrieved.', sanitizedLogs);
   } catch (error) {
     console.error('getActivityLogs error:', error);
     return errorResponse(res, 'Failed to fetch activity logs.', 500, error.message);
