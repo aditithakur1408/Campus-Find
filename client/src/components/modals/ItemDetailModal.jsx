@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, MapPin, Calendar, Shield, Sparkles, Key } from 'lucide-react';
+import { X, MapPin, Calendar, Shield, Sparkles, Key, CheckCircle, Clock, AlertCircle } from 'lucide-react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 
@@ -83,6 +83,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
   const isSecurity = user?.role === 'SECURITY_STAFF' || user?.role === 'ADMIN';
   const isFound = item.itemType === 'FOUND';
   const hasUserClaimed = user && details?.claims?.some((c) => c.claimantId === user.id);
+  const myClaim = user && !isOwner && !isSecurity ? details?.claims?.find((c) => c.claimantId === user.id) : null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#191712]/60 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
@@ -197,6 +198,71 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
               <p className="font-type text-[11px] text-[#5d5744] mt-1">
                 To claim this item, you must submit a claim answering this question accurately.
               </p>
+            </div>
+          )}
+
+          {/* Claimant's Own Claim Status Section */}
+          {myClaim && (
+            <div className="border-t-2 border-dashed border-[#191712]/30 pt-5 space-y-3">
+              <div className="flex items-center justify-between">
+                <h3 className="font-hand font-bold text-3xl text-[#191712] flex items-center gap-2">
+                  <Shield className="w-6 h-6 text-[#d9584d]" />
+                  <span>Your Claim Status</span>
+                </h3>
+                {myClaim.claimStatus === 'APPROVED' ? (
+                  <span className="stamp-badge bg-[#b8ecd0] text-[#191712]">
+                    CLAIM APPROVED
+                  </span>
+                ) : myClaim.claimStatus === 'REJECTED' ? (
+                  <span className="stamp-badge bg-[#ffc9dc] text-[#d9584d] border-[#d9584d]">
+                    CLAIM REJECTED
+                  </span>
+                ) : myClaim.claimStatus === 'COMPLETED' ? (
+                  <span className="stamp-badge bg-[#191712] text-[#fbf6e6]">
+                    HANDED OVER
+                  </span>
+                ) : (
+                  <span className="stamp-badge bg-[#ffe45e] text-[#191712]">
+                    UNDER REVIEW
+                  </span>
+                )}
+              </div>
+
+              <div className="p-4 rounded-2xl border-2 border-[#191712] bg-[#fbf6e6] shadow-[2px_3px_0_#191712] space-y-2">
+                <div className="bg-[#f2ead4] p-3 rounded-xl border border-[#191712]">
+                  <p className="font-type text-xs text-[#5d5744]">Your Submitted Proof Answer:</p>
+                  <p className="font-neat text-lg text-[#191712] mt-0.5">{myClaim.proofAnswer}</p>
+                  {myClaim.additionalDetails && (
+                    <p className="font-neat text-sm text-[#5d5744] mt-1 italic">Note: {myClaim.additionalDetails}</p>
+                  )}
+                </div>
+
+                {myClaim.claimStatus === 'APPROVED' && item.status !== 'RESOLVED' && (
+                  <div className="p-3.5 bg-[#b8ecd0] border-2 border-[#191712] rounded-xl shadow-[2px_2px_0_#191712] text-[#191712] space-y-1">
+                    <p className="font-hand font-bold text-2xl flex items-center gap-1.5 text-[#191712]">
+                      <CheckCircle className="w-5 h-5 text-[#2f6f46]" />
+                      Claim Approved by Finder!
+                    </p>
+                    <p className="font-neat text-base text-[#191712]">
+                      Meet in person at <strong>{item.custodyType === 'AT_SECURITY_DESK' ? 'Campus Security Desk' : 'the campus location with finder'}</strong> to complete the verification handover.
+                    </p>
+                  </div>
+                )}
+
+                {myClaim.claimStatus === 'PENDING' && (
+                  <p className="font-neat text-base text-[#5d5744] flex items-center gap-1.5 italic">
+                    <Clock className="w-4 h-4 text-[#5d5744]" />
+                    Your ownership proof is under review by the finder. Check back shortly.
+                  </p>
+                )}
+
+                {myClaim.claimStatus === 'REJECTED' && (
+                  <p className="font-neat text-base text-[#d9584d] flex items-center gap-1.5">
+                    <AlertCircle className="w-4 h-4 text-[#d9584d]" />
+                    The finder was unable to verify ownership based on this answer.
+                  </p>
+                )}
+              </div>
             </div>
           )}
 
@@ -325,18 +391,25 @@ export default function ItemDetailModal({ isOpen, onClose, item, onOpenClaim, on
             PINNED BY: <strong className="text-[#191712]">{details?.user?.fullName || 'Campus Member'}</strong>
           </div>
 
-          {!isOwner && isFound && item.status !== 'RESOLVED' && (
+          {item.status === 'RESOLVED' ? (
+            <span className="font-hand font-bold text-2xl text-[#2f6f46] flex items-center gap-1.5">
+              <CheckCircle className="w-6 h-6 text-[#2f6f46]" />
+              Item Reunited with Owner
+            </span>
+          ) : !isOwner && isFound ? (
             <button
               onClick={() => {
                 onClose();
                 onOpenClaim(item);
               }}
               disabled={hasUserClaimed}
-              className="sketch-button !text-xl !py-2 !px-5"
+              className={`sketch-button !text-xl !py-2 !px-5 ${
+                hasUserClaimed ? 'opacity-60 cursor-not-allowed !bg-[#5d5744]' : ''
+              }`}
             >
               {hasUserClaimed ? 'Claim Already Submitted' : 'Claim This Item'}
             </button>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
