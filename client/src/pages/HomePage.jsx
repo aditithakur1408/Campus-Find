@@ -30,7 +30,7 @@ export default function HomePage({
   const selectedLocationName = locations.find((l) => String(l.id) === String(selectedLocation))?.buildingName;
 
   return (
-    <div>
+    <div className="w-full max-w-full overflow-x-hidden">
       {/* Spacious Hero Section */}
       <section className="relative max-w-6xl w-full mx-auto px-4 sm:px-6 pt-14 pb-12">
         {/* Floating Circular Rubber Stamp */}

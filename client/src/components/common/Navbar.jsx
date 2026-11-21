@@ -14,26 +14,26 @@ export default function Navbar({
   const { user, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 bg-[#fbf6e6]/90 backdrop-blur-md border-b-[2.5px] border-[#191712]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 lg:gap-8 h-18 py-2">
+    <header className="sticky top-0 z-40 bg-[#fbf6e6]/95 backdrop-blur-md border-b-[2.5px] border-[#191712] w-full max-w-full">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-2 sm:gap-4 lg:gap-8 h-18 py-2">
           {/* Logo */}
           <div 
-            className="flex items-center gap-3 cursor-pointer group select-none shrink-0" 
+            className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group select-none shrink-0" 
             onClick={() => setActiveTab('ALL')}
           >
-            <div className="w-10 h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] hover:bg-[#b8ecd0] flex items-center justify-center font-hand font-bold text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] hover:bg-[#b8ecd0] flex items-center justify-center font-hand font-bold text-xl sm:text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] shrink-0">
               CF
             </div>
-            <div className="flex items-baseline gap-2 shrink-0">
-              <span className="font-hand font-bold text-3xl sm:text-4xl text-[#191712] tracking-tight whitespace-nowrap">
+            <div className="flex items-baseline gap-1 sm:gap-2 shrink-0">
+              <span className="font-hand font-bold text-2xl sm:text-3xl lg:text-4xl text-[#191712] tracking-tight whitespace-nowrap">
                 CampusFind
               </span>
             </div>
           </div>
 
-          {/* Paper Navigation Tabs - Centered & Evenly Spaced */}
-          <nav className="hidden md:flex items-center justify-center gap-2 lg:gap-4 flex-1 mx-2 lg:mx-6">
+          {/* Paper Navigation Tabs - Centered & Visible on Large Screens */}
+          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 flex-1 mx-2 lg:mx-6 shrink-0">
             {[
               { id: 'ALL', label: 'All Notices' },
               { id: 'LOST', label: 'Lost Belongings' },
@@ -43,7 +43,7 @@ export default function Navbar({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`font-hand font-bold text-lg lg:text-xl px-3.5 lg:px-4 py-1.5 rounded-lg border-b-2 transition-all whitespace-nowrap ${
+                className={`font-hand font-bold text-lg xl:text-xl px-3.5 xl:px-4 py-1.5 rounded-lg border-b-2 transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === tab.id
                     ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e]/50 shadow-[1px_2px_0_#191712]'
                     : 'border-transparent text-[#5d5744] hover:text-[#191712] hover:bg-[#f2ead4]'
@@ -54,15 +54,15 @@ export default function Navbar({
             ))}
           </nav>
 
-          {/* Right Action Buttons - Balanced Spacing */}
-          <div className="flex items-center gap-2 sm:gap-3.5 shrink-0">
+          {/* Right Action Buttons - All Items Visible & Never Clipped */}
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Activity Log Button */}
             <button
               onClick={onOpenActivity}
               title="View Who Logged In & Registry Activity"
-              className="sketch-button-secondary text-sm !py-1.5 !px-3"
+              className="sketch-button-secondary text-sm !py-1.5 !px-2.5 sm:!px-3 flex items-center gap-1.5 shrink-0"
             >
-              <Activity className="w-4 h-4 text-[#d9584d]" />
+              <Activity className="w-4 h-4 text-[#d9584d] shrink-0" />
               <span className="hidden sm:inline">Logbook</span>
             </button>
 
@@ -71,9 +71,9 @@ export default function Navbar({
               <button
                 onClick={onOpenNotifications}
                 title="View Handover Codes & Notice Updates"
-                className="sketch-button-secondary text-sm !py-1.5 !px-3 relative"
+                className="sketch-button-secondary text-sm !py-1.5 !px-2.5 sm:!px-3 relative flex items-center gap-1.5 shrink-0"
               >
-                <Bell className="w-4 h-4 text-[#d9584d]" />
+                <Bell className="w-4 h-4 text-[#d9584d] shrink-0" />
                 <span className="hidden sm:inline">Inbox</span>
                 {unreadCount > 0 && (
                   <span className="absolute -top-1.5 -right-1.5 bg-[#d9584d] text-[#fbf6e6] text-[10px] font-type font-bold px-1.5 py-0.5 rounded-full border border-[#191712] leading-none">
@@ -86,27 +86,27 @@ export default function Navbar({
             {/* Report Item CTA */}
             <button
               onClick={onOpenReport}
-              className="sketch-button text-sm !py-1.5 !px-3.5"
+              className="sketch-button text-sm !py-1.5 !px-2.5 sm:!px-3.5 flex items-center gap-1.5 shrink-0"
             >
-              <PlusCircle className="w-4 h-4" />
-              <span>Post Notice</span>
+              <PlusCircle className="w-4 h-4 shrink-0" />
+              <span>Post<span className="hidden sm:inline"> Notice</span></span>
             </button>
 
             {/* User Profile / Auth */}
             {user ? (
-              <div className="flex items-center gap-2.5 pl-3 border-l-2 border-dashed border-[#191712]/30">
-                <div className="flex items-center gap-2 bg-[#f2ead4] px-3 py-1 rounded-xl border-2 border-[#191712] shadow-[2px_2px_0_#191712]">
-                  <div className="w-6 h-6 rounded-full bg-[#ffe45e] border border-[#191712] text-[#191712] flex items-center justify-center font-hand font-bold text-xs">
+              <div className="flex items-center gap-1.5 sm:gap-2.5 pl-1.5 sm:pl-3 border-l-2 border-dashed border-[#191712]/30 shrink-0">
+                <div className="flex items-center gap-2 bg-[#f2ead4] px-2 sm:px-3 py-1 rounded-xl border-2 border-[#191712] shadow-[2px_2px_0_#191712]">
+                  <div className="w-6 h-6 rounded-full bg-[#ffe45e] border border-[#191712] text-[#191712] flex items-center justify-center font-hand font-bold text-xs shrink-0">
                     {user.fullName ? user.fullName[0].toUpperCase() : 'U'}
                   </div>
-                  <span className="font-hand font-bold text-base text-[#191712] hidden xl:inline">
+                  <span className="font-hand font-bold text-base text-[#191712] hidden xl:inline truncate max-w-[120px]">
                     {user.fullName}
                   </span>
                 </div>
                 <button
                   onClick={logout}
                   title="Logout"
-                  className="p-1.5 text-[#5d5744] hover:text-[#d9584d] transition-colors"
+                  className="p-1 text-[#5d5744] hover:text-[#d9584d] transition-colors shrink-0"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -114,19 +114,19 @@ export default function Navbar({
             ) : (
               <button
                 onClick={onOpenAuth}
-                className="sketch-button-secondary text-sm !py-1.5 !px-3.5"
+                className="sketch-button-secondary text-sm !py-1.5 !px-2.5 sm:!px-3.5 flex items-center gap-1.5 shrink-0"
               >
-                <User className="w-4 h-4" />
-                <span>Sign In</span>
+                <User className="w-4 h-4 shrink-0" />
+                <span className="hidden sm:inline">Sign In</span>
               </button>
             )}
           </div>
         </div>
 
-        {/* Mobile Navigation Tabs - Evenly Distributed */}
-        <div className="flex md:hidden items-center justify-around gap-1.5 pb-2.5 overflow-x-auto scrollbar-none pt-1.5 border-t border-dashed border-[#191712]/20">
+        {/* Mobile & Tablet Navigation Tabs - Visible and Evenly Distributed */}
+        <div className="flex lg:hidden items-center justify-around sm:justify-center sm:gap-4 pb-2.5 overflow-x-auto scrollbar-none pt-1.5 border-t border-dashed border-[#191712]/20 px-1">
           {[
-            { id: 'ALL', label: 'All' },
+            { id: 'ALL', label: 'All Notices' },
             { id: 'LOST', label: 'Lost' },
             { id: 'FOUND', label: 'Found' },
             ...(user ? [{ id: 'MY_NOTICES', label: 'My Notices' }] : []),
@@ -134,7 +134,7 @@ export default function Navbar({
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`shrink-0 font-hand font-bold text-base px-3 py-1 rounded-lg border transition-all cursor-pointer ${
+              className={`shrink-0 font-hand font-bold text-base sm:text-lg px-3 sm:px-4 py-1 rounded-lg border transition-all cursor-pointer ${
                 activeTab === tab.id
                   ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e] shadow-[1px_2px_0_#191712]'
                   : 'border-transparent text-[#5d5744] hover:bg-[#f2ead4]'
