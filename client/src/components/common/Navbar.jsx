@@ -15,11 +15,11 @@ export default function Navbar({
 
   return (
     <header className="sticky top-0 z-40 bg-[#fbf6e6]/90 backdrop-blur-md border-b-[2.5px] border-[#191712]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-18 py-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4 lg:gap-8 h-18 py-2">
           {/* Logo */}
           <div 
-            className="flex items-center gap-2.5 cursor-pointer group select-none shrink-0" 
+            className="flex items-center gap-3 cursor-pointer group select-none shrink-0" 
             onClick={() => setActiveTab('ALL')}
           >
             <div className="w-10 h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] hover:bg-[#b8ecd0] flex items-center justify-center font-hand font-bold text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] shrink-0">
@@ -32,8 +32,8 @@ export default function Navbar({
             </div>
           </div>
 
-          {/* Paper Navigation Tabs */}
-          <nav className="hidden md:flex items-center gap-2">
+          {/* Paper Navigation Tabs - Centered & Evenly Spaced */}
+          <nav className="hidden md:flex items-center justify-center gap-2 lg:gap-4 flex-1 mx-2 lg:mx-6">
             {[
               { id: 'ALL', label: 'All Notices' },
               { id: 'LOST', label: 'Lost Belongings' },
@@ -43,9 +43,9 @@ export default function Navbar({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`font-hand font-bold text-xl px-3.5 py-1 rounded-lg border-b-2 transition-all ${
+                className={`font-hand font-bold text-lg lg:text-xl px-3.5 lg:px-4 py-1.5 rounded-lg border-b-2 transition-all whitespace-nowrap ${
                   activeTab === tab.id
-                    ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e]/50'
+                    ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e]/50 shadow-[1px_2px_0_#191712]'
                     : 'border-transparent text-[#5d5744] hover:text-[#191712] hover:bg-[#f2ead4]'
                 }`}
               >
@@ -54,8 +54,8 @@ export default function Navbar({
             ))}
           </nav>
 
-          {/* Right Action Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          {/* Right Action Buttons - Balanced Spacing */}
+          <div className="flex items-center gap-2 sm:gap-3.5 shrink-0">
             {/* Activity Log Button */}
             <button
               onClick={onOpenActivity}
@@ -94,12 +94,12 @@ export default function Navbar({
 
             {/* User Profile / Auth */}
             {user ? (
-              <div className="flex items-center gap-2 pl-2 border-l-2 border-dashed border-[#191712]/30">
+              <div className="flex items-center gap-2.5 pl-3 border-l-2 border-dashed border-[#191712]/30">
                 <div className="flex items-center gap-2 bg-[#f2ead4] px-3 py-1 rounded-xl border-2 border-[#191712] shadow-[2px_2px_0_#191712]">
                   <div className="w-6 h-6 rounded-full bg-[#ffe45e] border border-[#191712] text-[#191712] flex items-center justify-center font-hand font-bold text-xs">
                     {user.fullName ? user.fullName[0].toUpperCase() : 'U'}
                   </div>
-                  <span className="font-hand font-bold text-base text-[#191712] hidden lg:inline">
+                  <span className="font-hand font-bold text-base text-[#191712] hidden xl:inline">
                     {user.fullName}
                   </span>
                 </div>
@@ -123,8 +123,8 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* Mobile Navigation Tabs */}
-        <div className="flex md:hidden items-center gap-1.5 pb-2 overflow-x-auto scrollbar-none pt-1 border-t border-dashed border-[#191712]/20">
+        {/* Mobile Navigation Tabs - Evenly Distributed */}
+        <div className="flex md:hidden items-center justify-around gap-1.5 pb-2.5 overflow-x-auto scrollbar-none pt-1.5 border-t border-dashed border-[#191712]/20">
           {[
             { id: 'ALL', label: 'All' },
             { id: 'LOST', label: 'Lost' },
@@ -134,9 +134,9 @@ export default function Navbar({
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`shrink-0 font-hand font-bold text-base px-2.5 py-0.5 rounded-lg border transition-all cursor-pointer ${
+              className={`shrink-0 font-hand font-bold text-base px-3 py-1 rounded-lg border transition-all cursor-pointer ${
                 activeTab === tab.id
-                  ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e]'
+                  ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e] shadow-[1px_2px_0_#191712]'
                   : 'border-transparent text-[#5d5744] hover:bg-[#f2ead4]'
               }`}
             >
