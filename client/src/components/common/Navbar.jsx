@@ -19,15 +19,15 @@ export default function Navbar({
         <div className="flex items-center justify-between h-18 py-2">
           {/* Logo */}
           <div 
-            className="flex items-center gap-2.5 cursor-pointer group select-none" 
+            className="flex items-center gap-2.5 cursor-pointer group select-none shrink-0" 
             onClick={() => setActiveTab('ALL')}
           >
-            <div className="w-10 h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] hover:bg-[#b8ecd0] flex items-center justify-center font-hand font-bold text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712]">
+            <div className="w-10 h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] hover:bg-[#b8ecd0] flex items-center justify-center font-hand font-bold text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] shrink-0">
               CF
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-hand font-bold text-3xl sm:text-4xl text-[#191712] tracking-tight">
-                Campus<span className="underline decoration-wavy decoration-[#d9584d] decoration-2">Find</span>
+            <div className="flex items-baseline gap-2 shrink-0">
+              <span className="font-hand font-bold text-3xl sm:text-4xl text-[#191712] tracking-tight whitespace-nowrap">
+                CampusFind
               </span>
             </div>
           </div>
