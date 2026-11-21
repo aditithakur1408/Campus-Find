@@ -15,9 +15,9 @@ export default function Navbar({
 
   return (
     <header className="sticky top-0 z-40 bg-[#fbf6e6]/95 backdrop-blur-md border-b-[2.5px] border-[#191712] w-full max-w-full">
-      <div className="max-w-7xl mx-auto pl-3 sm:pl-6 lg:pl-8 pr-6 sm:pr-10 lg:pr-14 xl:pr-16">
-        <div className="flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 h-18 py-2">
-          {/* Logo */}
+      <div className="w-full px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-2 sm:gap-4 lg:gap-8 h-18 py-2">
+          {/* Logo - Left Most */}
           <div 
             className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group select-none shrink-0" 
             onClick={() => setActiveTab('ALL')}
@@ -25,7 +25,7 @@ export default function Navbar({
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-[2.5px] border-[#191712] bg-[#ffe45e] hover:bg-[#b8ecd0] flex items-center justify-center font-hand font-bold text-xl sm:text-2xl text-[#191712] transform -rotate-6 group-hover:rotate-6 transition-all duration-300 shadow-[2px_3px_0_#191712] hover:shadow-[4px_5px_0_#191712] shrink-0">
               CF
             </div>
-            <div className="flex items-baseline gap-1 sm:gap-2 shrink-0">
+            <div className="flex items-baseline gap-1.5 shrink-0">
               <span className="font-hand font-bold text-2xl sm:text-3xl lg:text-4xl text-[#191712] tracking-tight whitespace-nowrap">
                 CampusFind
               </span>
@@ -33,7 +33,7 @@ export default function Navbar({
           </div>
 
           {/* Paper Navigation Tabs - Centered & Visible on Large Screens */}
-          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-3.5 flex-1 mx-2 lg:mx-4 shrink-0">
+          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 flex-1 mx-3 lg:mx-6 shrink-0">
             {[
               { id: 'ALL', label: 'All Notices' },
               { id: 'LOST', label: 'Lost Belongings' },
@@ -43,7 +43,7 @@ export default function Navbar({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`font-hand font-bold text-lg xl:text-xl px-3 xl:px-4 py-1.5 rounded-lg border-b-2 transition-all whitespace-nowrap cursor-pointer ${
+                className={`font-hand font-bold text-lg xl:text-xl px-3.5 xl:px-4 py-1.5 rounded-lg border-b-2 transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === tab.id
                     ? 'border-[#d9584d] text-[#191712] bg-[#ffe45e]/50 shadow-[1px_2px_0_#191712]'
                     : 'border-transparent text-[#5d5744] hover:text-[#191712] hover:bg-[#f2ead4]'
@@ -54,8 +54,8 @@ export default function Navbar({
             ))}
           </nav>
 
-          {/* Right Action Buttons - Shifted Left with Full Name Visibility */}
-          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 mr-1 sm:mr-3 lg:mr-6">
+          {/* Right Action Buttons - Adjusted with Full Name Visibility */}
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Activity Log Button */}
             <button
               onClick={onOpenActivity}
@@ -99,7 +99,7 @@ export default function Navbar({
                   <div className="w-6 h-6 rounded-full bg-[#ffe45e] border border-[#191712] text-[#191712] flex items-center justify-center font-hand font-bold text-xs shrink-0">
                     {user.fullName ? user.fullName[0].toUpperCase() : 'U'}
                   </div>
-                  <span className="font-hand font-bold text-base text-[#191712] inline truncate max-w-[140px] sm:max-w-[200px]">
+                  <span className="font-hand font-bold text-base text-[#191712] inline truncate max-w-[140px] sm:max-w-[220px]">
                     {user.fullName}
                   </span>
                 </div>
